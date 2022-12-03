@@ -55,5 +55,13 @@ public class Endereço {
     public void setCep(Long cep) {
         this.cep = cep;
     }
-    
+    @Override
+    public String toString(){
+        return "Endereço{"
+            + "logradouro=" + logradouro
+            + ",numero=" + numero
+            + ",bairro=" + bairro
+            + ",cep=" + cep
+            + '}';
+    }
 }
