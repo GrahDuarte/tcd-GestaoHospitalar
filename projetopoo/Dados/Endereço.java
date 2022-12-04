@@ -9,19 +9,57 @@ package com.mycompany.projetopoo.Dados;
  * @author suKarolainy
  */
 public class Endereço {
+    private String pais;
+    private String estado;
+    private String cidade;
+    private String bairro;
     private String logradouro;
     private Integer numero;
-    private String bairro;
-    private Long cep;
+    private String complemento;
 
     public Endereço() {
     }
 
-    public Endereço(String logradouro, Integer numero, String bairro, Long cep) {
+    public Endereço(String pais, String estado, String cidade, String bairro, String logradouro, Integer numero, String complemento) {
+        this.pais = pais;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.bairro = bairro;
         this.logradouro = logradouro;
         this.numero = numero;
+        this.complemento = complemento;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
         this.bairro = bairro;
-        this.cep = cep;
     }
 
     public String getLogradouro() {
@@ -40,28 +78,27 @@ public class Endereço {
         this.numero = numero;
     }
 
-    public String getBairro() {
-        return bairro;
+    public String getComplemento() {
+        return complemento;
     }
 
-    public void setBairro(String bairro) {
-        this.bairro = bairro;
+    public void setComplemento(String complemento) {
+        this.complemento = complemento;
     }
 
-    public Long getCep() {
-        return cep;
-    }
 
-    public void setCep(Long cep) {
-        this.cep = cep;
-    }
     @Override
     public String toString(){
-        return "Endereço{"
-            + "logradouro=" + logradouro
-            + ",numero=" + numero
-            + ",bairro=" + bairro
-            + ",cep=" + cep
-            + '}';
+        return "endereço{"
+                + "pais=" + pais
+                + ",estado=" + estado
+                + ",cidade=" + cidade
+                + ",bairro=" + bairro
+                + ",logradouro=" + logradouro
+                + ",numero" + numero
+                + ",complemento=" + complemento
+                + '}';
     }
 }
+    
+
