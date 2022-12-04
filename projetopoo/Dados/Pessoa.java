@@ -4,22 +4,38 @@
  */
 package com.mycompany.projetopoo.Dados;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author suKarolainy
  */
 public class Pessoa{
+    private String cpf;
     private String nome;
-    private Contato contato;
     private Endereço endereço;
+    private LocalDate dataNascimento;
+    private String telefone;
+    private String email;
 
     public Pessoa() {
     }
 
-    public Pessoa(String nome, Contato contato, Endereço endereço) {
+    public Pessoa(String cfp, String nome, Endereço endereço, LocalDate dataNascimento, String telefone, String email) {
+        this.cfp = cfp;
         this.nome = nome;
-        this.contato = contato;
         this.endereço = endereço;
+        this.dataNascimento = dataNascimento;
+        this.telefone = telefone;
+        this.email = email;
+    }
+
+    public String getCfp() {
+        return cfp;
+    }
+
+    public void setCfp(String cfp) {
+        this.cfp = cfp;
     }
 
     public String getNome() {
@@ -30,14 +46,6 @@ public class Pessoa{
         this.nome = nome;
     }
 
-    public Contato getContato() {
-        return contato;
-    }
-
-    public void setContato(Contato contato) {
-        this.contato = contato;
-    }
-
     public Endereço getEndereço() {
         return endereço;
     }
@@ -45,5 +53,30 @@ public class Pessoa{
     public void setEndereço(Endereço endereço) {
         this.endereço = endereço;
     }
+
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     
 }
