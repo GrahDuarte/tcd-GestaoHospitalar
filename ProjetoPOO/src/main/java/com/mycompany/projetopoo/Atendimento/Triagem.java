@@ -61,5 +61,14 @@ public class Triagem {
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Triagem{" 
+                + "enfermeiroTriador=" + enfermeiroTriador 
+                + ", motivoAtendimento=" + motivoAtendimento 
+                + ", prioridadeAtendimento=" + prioridadeAtendimento 
+                + ", paciente=" + paciente 
+                + '}';
+    }
 }
