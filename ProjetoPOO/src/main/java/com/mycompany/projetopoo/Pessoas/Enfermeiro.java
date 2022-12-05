@@ -4,7 +4,7 @@
  */
 package com.mycompany.projetopoo.Pessoas;
 
-import com.mycompany.projetopoo.Dados.Endereço;
+import com.mycompany.projetopoo.Dados.Endereco;
 import com.mycompany.projetopoo.Dados.Pessoa;
 import java.time.LocalDate;
 
@@ -13,26 +13,19 @@ import java.time.LocalDate;
  * @author suKarolainy
  */
 public class Enfermeiro extends Pessoa{
-    private Pessoa pessoa;
     private String coren;
 
     public Enfermeiro() {
     }
 
-    public Enfermeiro(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereço endereço) {
+    public Enfermeiro(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereço) {
         super(id, nome, cpf, dataNascimento, telefone, email, endereço);
     }
 
+    
+
     public Enfermeiro(String coren) {
         this.coren = coren;
-    }
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
     }
 
     public String getCoren() {
@@ -41,15 +34,12 @@ public class Enfermeiro extends Pessoa{
 
     public void setCoren(String coren) {
         this.coren = coren;
-    }
+    }    
 
-    public Long getId() {
-        return id;
+    @Override
+    public String toString() {
+        return "Enfermeiro{" 
+                + "coren=" + coren 
+                + '}';
     }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    
 }

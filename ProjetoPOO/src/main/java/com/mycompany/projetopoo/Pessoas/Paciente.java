@@ -13,21 +13,12 @@ import java.time.LocalDate;
  */
 public class Paciente extends Pessoa{
 
-    private Pessoa pessoa;
     private String profissao;
     private String tipoSanguineo;
     private String alergia;
     private String doencasCronicas;
     private String remediosControlados;
     private boolean estado;
-
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
 
     public void getDataNascimento(String text) {
         this.setDataNascimento(LocalDate.MIN.now());
@@ -91,6 +82,17 @@ public class Paciente extends Pessoa{
 
     public void setEstado(boolean estado) {
         this.estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Paciente{" 
+                + "profissao=" + profissao 
+                + ", tipoSanguineo=" + tipoSanguineo 
+                + ", alergia=" + alergia 
+                + ", doencasCronicas=" + doencasCronicas 
+                + ", remediosControlados=" + remediosControlados 
+                + ", estado=" + estado + '}';
     }
 
     

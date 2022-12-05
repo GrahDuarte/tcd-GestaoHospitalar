@@ -4,7 +4,7 @@
  */
 package com.mycompany.projetopoo.gui;
 
-import com.mycompany.projetopoo.Dados.Endereço;
+import com.mycompany.projetopoo.Dados.Endereco;
 import com.mycompany.projetopoo.Pessoas.Paciente;
 import static java.awt.SystemColor.text;
 import java.time.LocalDate;
@@ -270,7 +270,7 @@ public class InserirPaciente extends javax.swing.JFrame {
         paciente.setTelefone(celularTxt.getText());
         paciente.setEmail(emailTxt.getText());
         
-        Endereço endereço = new Endereço();
+        Endereco endereço = new Endereco();
         
         endereço.setPais(paisTxt.getText());
         endereço.setEstado(estadoTxt.getText());

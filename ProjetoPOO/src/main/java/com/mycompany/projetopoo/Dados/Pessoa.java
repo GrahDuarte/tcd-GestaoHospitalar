@@ -17,19 +17,19 @@ public class Pessoa{
     private LocalDate dataNascimento;
     private String telefone;
     private String email;
-    private Endereço endereço;
+    public Endereco endereco;
 
     public Pessoa() {
     }
 
-    public Pessoa(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereço endereço) {
+    public Pessoa(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereço) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
         this.email = email;
-        this.endereço = endereço;
+        this.endereco = endereço;
     }
 
     public Long getId() {
@@ -80,12 +80,12 @@ public class Pessoa{
         this.email = email;
     }
 
-    public Endereço getEndereço() {
-        return endereço;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setEndereço(Endereço endereço) {
-        this.endereço = endereço;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
     
 
