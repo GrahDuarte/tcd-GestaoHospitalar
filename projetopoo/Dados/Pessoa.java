@@ -21,8 +21,8 @@ public class Pessoa{
     public Pessoa() {
     }
 
-    public Pessoa(String cfp, String nome, Endereço endereço, LocalDate dataNascimento, String telefone, String email) {
-        this.cfp = cfp;
+    public Pessoa(String cpf, String nome, Endereço endereço, LocalDate dataNascimento, String telefone, String email) {
+        this.cfp = cpf;
         this.nome = nome;
         this.endereço = endereço;
         this.dataNascimento = dataNascimento;
@@ -30,12 +30,12 @@ public class Pessoa{
         this.email = email;
     }
 
-    public String getCfp() {
-        return cfp;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCfp(String cfp) {
-        this.cfp = cfp;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getNome() {
@@ -77,6 +77,4 @@ public class Pessoa{
     public void setEmail(String email) {
         this.email = email;
     }
-
-    
 }
