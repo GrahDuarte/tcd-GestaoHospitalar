@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 /**
  *
- * @author ho.aecsky
+ * @author suKarolainy
  */
 public class Enfermeiro extends Pessoa{
     private Pessoa pessoa;

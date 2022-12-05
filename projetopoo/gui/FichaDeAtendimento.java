@@ -6,7 +6,7 @@ package com.mycompany.projetopoo.gui;
 
 /**
  *
- * @author ho.aecsky
+ * @author suKarolainy
  */
 public class FichaDeAtendimento extends javax.swing.JFrame {
 

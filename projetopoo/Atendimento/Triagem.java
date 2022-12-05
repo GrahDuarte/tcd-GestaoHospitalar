@@ -9,7 +9,7 @@ import com.mycompany.projetopoo.Pessoas.Paciente;
 
 /**
  *
- * @author ho.aecsky
+ * @author suKarolainy
  */
 public class Triagem {
     private Enfermeiro enfermeiroTriador;

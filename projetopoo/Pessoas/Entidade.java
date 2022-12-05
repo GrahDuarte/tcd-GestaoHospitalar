@@ -6,7 +6,7 @@ package com.mycompany.projetopoo.Pessoas;
 
 /**
  *
- * @author ho.aecsky
+ * @author suKarolainy
  */
 public abstract class Entidade {
     /**

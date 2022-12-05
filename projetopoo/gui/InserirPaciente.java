@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 /**
  *
- * @author ho.aecsky
+ * @author suKarolainy
  */
 public class InserirPaciente extends javax.swing.JFrame {
 
