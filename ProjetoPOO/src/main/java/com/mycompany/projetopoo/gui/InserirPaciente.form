@@ -30,10 +30,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -51,6 +48,43 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="bairroLbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="complementoLbl" min="-2" max="-2" attributes="0"/>
+                              <Component id="logradouroLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="paisLbl" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="estadoLbl" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="paisTxt" alignment="1" pref="186" max="32767" attributes="0"/>
+                                      <Component id="bairroTxt" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="logTxt" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="compTxt" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="estadoTxt" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="cidadeLbl" min="-2" max="-2" attributes="0"/>
+                                      <Component id="numeroLbl" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="numTxt" min="-2" pref="91" max="-2" attributes="0"/>
+                                      <Component id="cidadeTxt" alignment="0" min="-2" pref="175" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                                  <Component id="SalvarBtn" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="endereçoLbl" min="-2" max="-2" attributes="0"/>
@@ -60,35 +94,10 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="emailLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="logradouroLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="numeroLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="complementoLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="bairroLbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="20" pref="20" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="compltxt" pref="311" max="32767" attributes="0"/>
-                                              <Component id="bairrotxt" max="32767" attributes="0"/>
-                                              <Component id="logTxt" max="32767" attributes="0"/>
-                                              <Component id="numtxt" max="32767" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace pref="39" max="32767" attributes="0"/>
-                                          <Component id="emailTxt" min="-2" pref="263" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
                               <Component id="cpfLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="celularLbl" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="nascimentolbl" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="cpfTxt" min="-2" pref="263" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="nomeLbl" min="-2" max="-2" attributes="0"/>
@@ -97,16 +106,16 @@
                                   </Group>
                                   <Component id="nascTxt" alignment="1" min="-2" pref="263" max="-2" attributes="0"/>
                                   <Component id="celularTxt" alignment="1" min="-2" pref="263" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="emailLbl" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="emailTxt" min="-2" pref="263" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="36" pref="70" max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Component id="SalvarBtn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="241" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -142,29 +151,38 @@
                   </Group>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Component id="endereçoLbl" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="logradouroLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="logTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="paisLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="paisTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="numeroLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="numtxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cidadeTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cidadeLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="estadoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="estadoTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="bairroLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="bairrotxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="bairroTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="logradouroLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="logTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="numeroLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="numTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="complementoLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="compltxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="compTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="35" max="32767" attributes="0"/>
+                  <EmptySpace pref="62" max="32767" attributes="0"/>
                   <Component id="SalvarBtn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -233,14 +251,14 @@
         </Component>
         <Component class="javax.swing.JTextField" name="logTxt">
         </Component>
-        <Component class="javax.swing.JTextField" name="numtxt">
+        <Component class="javax.swing.JTextField" name="numTxt">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="numtxtActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="numTxtActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="bairrotxt">
+        <Component class="javax.swing.JTextField" name="bairroTxt">
         </Component>
-        <Component class="javax.swing.JTextField" name="compltxt">
+        <Component class="javax.swing.JTextField" name="compTxt">
         </Component>
         <Component class="javax.swing.JTextField" name="nascTxt">
           <Events>
@@ -259,6 +277,27 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SalvarBtnActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="paisLbl">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pa&#xed;s:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="estadoLbl">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Estado:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="cidadeLbl">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cidade:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="paisTxt">
+        </Component>
+        <Component class="javax.swing.JTextField" name="estadoTxt">
+        </Component>
+        <Component class="javax.swing.JTextField" name="cidadeTxt">
         </Component>
       </SubComponents>
     </Container>
