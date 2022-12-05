@@ -5,6 +5,7 @@
 package com.mycompany.projetopoo.gui;
 
 import com.mycompany.projetopoo.Pessoas.Paciente;
+import java.time.LocalDate;
 
 /**
  *
@@ -42,13 +43,13 @@ public class InserirPaciente extends javax.swing.JFrame {
         complementoLbl = new javax.swing.JLabel();
         NomeTxt = new javax.swing.JTextField();
         cpfTxt = new javax.swing.JTextField();
-        celulartxt = new javax.swing.JTextField();
-        emailtxt = new javax.swing.JTextField();
-        logtxt = new javax.swing.JTextField();
+        celularTxt = new javax.swing.JTextField();
+        emailTxt = new javax.swing.JTextField();
+        logTxt = new javax.swing.JTextField();
         numtxt = new javax.swing.JTextField();
         bairrotxt = new javax.swing.JTextField();
         compltxt = new javax.swing.JTextField();
-        nasctxt = new javax.swing.JTextField();
+        nascTxt = new javax.swing.JTextField();
         nascimentolbl = new javax.swing.JLabel();
         SalvarBtn = new javax.swing.JButton();
 
@@ -88,9 +89,9 @@ public class InserirPaciente extends javax.swing.JFrame {
             }
         });
 
-        nasctxt.addActionListener(new java.awt.event.ActionListener() {
+        nascTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nasctxtActionPerformed(evt);
+                nascTxtActionPerformed(evt);
             }
         });
 
@@ -130,11 +131,11 @@ public class InserirPaciente extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(compltxt, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
                                             .addComponent(bairrotxt)
-                                            .addComponent(logtxt)
+                                            .addComponent(logTxt)
                                             .addComponent(numtxt)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                        .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(29, 29, 29))))
                             .addComponent(cpfLbl)
                             .addComponent(celularLbl)
@@ -145,8 +146,8 @@ public class InserirPaciente extends javax.swing.JFrame {
                                     .addComponent(nomeLbl)
                                     .addGap(81, 81, 81)
                                     .addComponent(NomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(nasctxt, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(celulartxt, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(nascTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(celularTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(36, 70, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -168,22 +169,22 @@ public class InserirPaciente extends javax.swing.JFrame {
                     .addComponent(cpfTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nasctxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nascTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nascimentolbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(celularLbl)
-                    .addComponent(celulartxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(celularTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailLbl)
-                    .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addComponent(endereçoLbl)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logradouroLbl)
-                    .addComponent(logtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(logTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numeroLbl)
@@ -225,16 +226,26 @@ public class InserirPaciente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_numtxtActionPerformed
 
-    private void nasctxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nasctxtActionPerformed
+    private void nascTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nascTxtActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nasctxtActionPerformed
+    }//GEN-LAST:event_nascTxtActionPerformed
 
     private void SalvarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalvarBtnActionPerformed
         // TODO add your handling code here:
-        System.out.println("Salvar Paciente");
         Paciente paciente = new Paciente();
-        paciente.setCpf("12345678912");
-        paciente.setPessoaPaciente("Ana");
+        
+        paciente.setNome(NomeTxt.getText());
+        paciente.setCpf(cpfTxt.getText());
+        paciente.setDataNascimento(LocalDate.now());
+        paciente.setTelefone(celularTxt.getText());
+        paciente.setEmail(emailTxt.getText());
+        
+        //Endereço
+        //paciente.setPessoa.setEndereço.setLogradouro(logTxt.getText());
+        //nome,cpf,datan,celular,email,log, num, bairro,compl
+        System.out.println("Salvar Paciente");
+        System.out.println("Dados do paciente salvo: " + paciente.getNome());
+        
         
     }//GEN-LAST:event_SalvarBtnActionPerformed
 
@@ -279,20 +290,20 @@ public class InserirPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel bairroLbl;
     private javax.swing.JTextField bairrotxt;
     private javax.swing.JLabel celularLbl;
-    private javax.swing.JTextField celulartxt;
+    private javax.swing.JTextField celularTxt;
     private javax.swing.JLabel complementoLbl;
     private javax.swing.JTextField compltxt;
     private javax.swing.JLabel cpfLbl;
     private javax.swing.JTextField cpfTxt;
     private javax.swing.JLabel emailLbl;
-    private javax.swing.JTextField emailtxt;
+    private javax.swing.JTextField emailTxt;
     private javax.swing.JLabel endereçoLbl;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField logTxt;
     private javax.swing.JLabel logradouroLbl;
-    private javax.swing.JTextField logtxt;
+    private javax.swing.JTextField nascTxt;
     private javax.swing.JLabel nascimentolbl;
-    private javax.swing.JTextField nasctxt;
     private javax.swing.JLabel nomeLbl;
     private javax.swing.JLabel numeroLbl;
     private javax.swing.JTextField numtxt;
