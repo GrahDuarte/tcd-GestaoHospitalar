@@ -11,31 +11,33 @@ import java.time.LocalDate;
  * @author suKarolainy
  */
 public class Pessoa{
-    private String cpf;
+    public Long id;
     private String nome;
-    private Endereço endereço;
+    private String cpf;
     private LocalDate dataNascimento;
     private String telefone;
     private String email;
+    private Endereço endereço;
 
     public Pessoa() {
     }
 
-    public Pessoa(String cpf, String nome, Endereço endereço, LocalDate dataNascimento, String telefone, String email) {
-        this.cfp = cpf;
+    public Pessoa(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereço endereço) {
+        this.id = id;
         this.nome = nome;
-        this.endereço = endereço;
+        this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
         this.email = email;
+        this.endereço = endereço;
     }
 
-    public String getCpf() {
-        return cpf;
+    public Long getId() {
+        return id;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -46,12 +48,12 @@ public class Pessoa{
         this.nome = nome;
     }
 
-    public Endereço getEndereço() {
-        return endereço;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setEndereço(Endereço endereço) {
-        this.endereço = endereço;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public LocalDate getDataNascimento() {
@@ -77,4 +79,16 @@ public class Pessoa{
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Endereço getEndereço() {
+        return endereço;
+    }
+
+    public void setEndereço(Endereço endereço) {
+        this.endereço = endereço;
+    }
+    
+
+    
+     
 }

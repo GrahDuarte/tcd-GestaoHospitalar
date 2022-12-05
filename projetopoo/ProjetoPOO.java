@@ -4,12 +4,14 @@
  */
 
 package com.mycompany.projetopoo;
-
-import com.mycompany.projetopoo.Dados.Contato;
-import com.mycompany.projetopoo.Dados.Endereço;
-import com.mycompany.projetopoo.Dados.Pessoa;
+/*
+import com.mycompany.projetopoo.DAOs.Dao;
+import com.mycompany.projetopoo.DAOs.DbConnection;
+import com.mycompany.projetopoo.DAOs.IDAO;
+import com.mycompany.projetopoo.DAOs.PacienteDao;
+*/
 import com.mycompany.projetopoo.Pessoas.Paciente;
-import java.lang.Long;
+import java.time.LocalDate;
 
 /**
  *
@@ -18,20 +20,15 @@ import java.lang.Long;
 public class ProjetoPOO {
 
     public static void main(String[] args) {
-        Pessoa pessoa = new Pessoa();
-        Endereço endereço = new Endereço();
-        Contato contato = new Contato();
+
         Paciente paciente = new Paciente();
         
-        contato.setEmail("Ana@gmail.com");
-        //pessoa.setNome("Ana Maria");
-        paciente.setPessoaPaciente("Ana");
-        paciente.setId(Integer.SIZE);
+        paciente.setNome("Ana");
+        paciente.setCpf("123456789");
+        //paciente.setDataNascimento(LocalDate.MIN="12/02/2022");
         
-        //paciente.getPessoaPaciente(pessoa.getNome());
-        //System.out.println("Nome do paciente: " +pessoa.getNome() + "\nEmail do paciente: "+contato.getEmail());
-        System.out.println("Nome do paciente: " +paciente.getNome()+ "\nId do paciente: " +paciente.getId());
-               
-        //System.out.println("Nome do paciente: " + paciente.getPessoa());
+        
+        System.out.println("Dados do paciente: \nNome: " + paciente.getNome());
+        
     }
 }

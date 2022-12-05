@@ -3,127 +3,294 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.projetopoo.DAOs;
+import com.mycompany.projetopoo.Pessoas.Entidade;
 import com.mycompany.projetopoo.Pessoas.Paciente;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author suKarolainy
  */
-public abstract class Dao implements IDAO<Paciente>{
+public abstract class Dao<Paciente, K> implements IDAO<Paciente, K>{
     public static final String DB = "freedb_gestao";
 
-    public Long saveOrUpdate(Paciente e) {
+    /**
+     * Executa o procedimento de salvamento (inserção ou atualização) do objeto
+     * mapeado no banco de dados.
+     *
+     * @param o Objeto a ser salvo no banco de dados.
+     * @return Valor da chave primária gerada pela inclusão de um novo registro
+     * ou mesmo valor da chave primária do objeto original presistido
+     * anteriormente.
+     */
+    @Override
+    public K salvar(Paciente o) {
 
         Long id = 0L;
 
-        if (((Paciente) e).getId() == null
-                || ((Paciente) e).getId() == 0) {
+        // Novo registro
+        if (((Entidade) o).getId() == null || ((Entidade) o).getId() == 0) {
 
-            try ( PreparedStatement preparedStatement
-                    = DbConnection.getConnection().prepareStatement(
-                            getSaveStatment(),
+            // try-with-resources libera recurso ao final do bloco (PreparedStatement)
+            try (PreparedStatement pstmt
+                    = DbConnection.getConexao().prepareStatement(
+                            // Sentença SQL para inserção de registros
+                            getDeclaracaoInsert(),
+                            // Especifica que a(s) chave(s) primária(s) devem ser
+                            // retornadas como resposta
                             Statement.RETURN_GENERATED_KEYS)) {
 
-                composeSaveOrUpdateStatement(preparedStatement, e);
+                // Prepara a declaração com os dados do objeto passado
+                montarDeclaracao(pstmt, o);
 
-                System.out.println(">> SQL: " + preparedStatement);
+                // Executa o comando SQL
+                pstmt.executeUpdate();
 
-                preparedStatement.executeUpdate();
+                // Recupera os resultados da execução: chaves primárias dos registros criados
+                ResultSet rs = pstmt.getGeneratedKeys();
 
-                ResultSet resultSet = preparedStatement.getGeneratedKeys();
-
-                if (resultSet.next()) {
-
-                    id = resultSet.getLong(1);
+                // Se há alguma chave, move para o primeiro registro...
+                if (rs.next()) {
+                    // TODO Retorno imediato (return ...)?
+                    // TODO Repensar a estratégia de uso de K: Integer? String?
+                    // ... e recupera o (único) longo retornado
+                    id = rs.getLong(1);
                 }
 
-            } catch (Exception ex) {
-                System.out.println(">> " + ex);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
 
         } else {
-            try ( PreparedStatement preparedStatement
-                    = DbConnection.getConnection().prepareStatement(
-                            getUpdateStatment())) {
+            // Atualizar registro
+            
+            try (PreparedStatement pstmt
+                    = DbConnection.getConexao().prepareStatement(
+                            // Sentença SQL para atualização de registros
+                            getDeclaracaoUpdate())) {
 
-                composeSaveOrUpdateStatement(preparedStatement, e);
+                // Prepara a declaração com os dados do objeto passado
+                montarDeclaracao(pstmt, o);
+               
+                // Executa o comando SQL
+                pstmt.executeUpdate();
 
-                System.out.println(">> SQL: " + preparedStatement);
+                // Retorno da mesma id recebida com o objeto para manter
+                // compatibilidade com o procedimento do método
+                // TODO Retorno imediato (return ...)?
+                id = ((Entidade) o).getId();
 
-                preparedStatement.executeUpdate();
-
-                id = ((Paciente) e).getId();
-
-            } catch (Exception ex) {
-                System.out.println("Exception: " + ex);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
 
-        return id;
+        // Cast requerido para adaptação do tipo pois, mesmo que a id seja sempre
+        // longa, esse trecho de código não reconhece tal tipo implicitamente
+        return (K) id;
     }
 
-    public Paciente findById(Long id) {
+    /**
+     * Exclui o registro do objeto no banco de dados.
+     *
+     * @param o Objeto a ser excluído.<br>
+     * <i>OBS.: o único valor útil é a identidade do objeto mapeado.</i>
+     * @return Condição de sucesso ou falha na exclusão.
+     */
+    @Override
+    public Boolean excluir(Paciente o) {
+        // Recupera a identidade (chave primária) do objeto a ser excluído
+        Long id = ((Entidade) o).getId();
 
-        try ( PreparedStatement preparedStatement
-                = DbConnection.getConnection().prepareStatement(
-                        getFindByIdStatment())) {
+        // Se há uma identidade válida...
+        if (id != null && id != 0) {
+            // ... tenta preparar uma sentença SQL para a conexão já estabelecida
+            try (PreparedStatement pstmt
+                    = DbConnection.getConexao().prepareStatement(
+                            // Sentença SQL para exclusão de registros
+                            getDeclaracaoDelete())) {
 
-            preparedStatement.setLong(1, id);
+                // Prepara a declaração com os dados do objeto passado
+                ajustarIdDeclaracao(pstmt, (K) id);
 
-            System.out.println(">> SQL: " + preparedStatement);
+                // Executa o comando SQL
+                pstmt.executeUpdate();
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
+        } else {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Recupera um dado objeto mapeado para o banco de dados por meio de sua
+     * chave de identidade.
+     *
+     * @param id Identidade do objeto.
+     * @return Objeto segundo registro persistido.
+     */
+    @Override
+    public Paciente localizarPorId(K id) {
+        // Declara referência para reter o objeto a ser recuperado
+        Paciente objeto = null;
+
+        // Tenta preparar uma sentença SQL para a conexão já estabelecida
+        try (PreparedStatement pstmt
+                = DbConnection.getConexao().prepareStatement(
+                        // Sentença SQL para busca por chave primária
+                        getDeclaracaoSelectPorId())) {
+
+            // Prepara a declaração com os dados do objeto passado
+            ajustarIdDeclaracao(pstmt, id);
+
+            // Executa o comando SQL
+            ResultSet resultSet = pstmt.executeQuery();
+
+            // Se há resultado retornado...
             if (resultSet.next()) {
-                return extractObject(resultSet);
+                // ... extrai objeto do respectivo registro do banco de dados
+                objeto = extrairObjeto(resultSet);
             }
 
-        } catch (Exception ex) {
-            System.out.println("Exception: " + ex);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        return null;
+        // Devolve nulo (objeto não encontrado) ou o objeto recuperado
+        return objeto;
     }
 
-    public List<Paciente> findAll() {
+    /**
+     * Recupera todos os objetos mapeados para o banco de dados do tipo
+     * específico.
+     *
+     * @return Lista (geralmente um <code>ArrayList<T></code>) de objetos
+     * persistidos.
+     */
+    @Override
+    public ArrayList<Paciente> localizarTodos() {
 
-        try ( PreparedStatement preparedStatement
-                = DbConnection.getConnection().prepareStatement(
-                        getFindAllStatment())) {
+        // Declara referência para reter o(s) objeto(s) a ser(em) recuperado(s)
+        ArrayList<Paciente> objetos = new ArrayList<>();
 
-            System.out.println(">> SQL: " + preparedStatement);
+        // Tenta preparar uma sentença SQL para a conexão já estabelecida
+        try (PreparedStatement pstmt
+                = DbConnection.getConexao().prepareStatement(
+                        // Sentença SQL para recuperação de todos os registros
+                        getDeclaracaoSelectTodos())) {
 
-            ResultSet resultSet = preparedStatement.executeQuery();
+            // Executa o comando SQL
+            ResultSet resultSet = pstmt.executeQuery();
 
-            return extractObjects(resultSet);
+            // Extrai objeto(s) do(s) respectivo(s) registro(s) do banco de dados
+            objetos = extrairObjetos(resultSet);
 
-        } catch (Exception ex) {
-            System.out.println("Exception: " + ex);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        return null;
+        // Devolve uma lista vazia (nenhum registro encontrado) 
+        // ou a relação de objeto(s) recuperado(s)
+        return objetos;
     }
 
-    public List<Paciente> extractObjects(ResultSet resultSet) {
-        List<Paciente> objects = new ArrayList<>();
+    /**
+     * Recupera a sentença SQL específica para a inserção da entidade no banco
+     * de dados.
+     *
+     * @return Sentença SQl para inserção.
+     */
+    public abstract String getDeclaracaoInsert();
 
+    /**
+     * Recupera a sentença SQL específica para a busca da entidade no banco de
+     * dados.
+     *
+     * @return Sentença SQl para busca por entidade.
+     */
+    public abstract String getDeclaracaoSelectPorId();
+
+    /**
+     * Recupera a sentença SQL específica para a busca das entidades no banco de
+     * dados.
+     *
+     * @return Sentença SQl para busca por entidades.
+     */
+    public abstract String getDeclaracaoSelectTodos();
+
+    /**
+     * Recupera a sentença SQL específica para a atualização da entidade no
+     * banco de dados.
+     *
+     * @return Sentença SQl para atualização.
+     */
+    public abstract String getDeclaracaoUpdate();
+
+    /**
+     * Recupera a sentença SQL específica para a exclusão da entidade no banco
+     * de dados.
+     *
+     * @return Sentença SQl para exclusão.
+     */
+    public abstract String getDeclaracaoDelete();
+
+    /**
+     * Insere o valor da chave primária na senteça SQL específica para seu uso.
+     *
+     * @param pstmt Declaração previamente preparada.
+     * @param id Chave primária a ser inserida na sentença SQL.
+     */
+    public void ajustarIdDeclaracao(PreparedStatement pstmt, K id) {
         try {
-            while (resultSet.next()) {
-                objects.add(extractObject(resultSet));
+            // Caso id seja um Long, emprega setLong()
+            if(id instanceof Long) {
+                // Cast é requerido porque K não é um tipo previamente definido
+                pstmt.setLong(1, (Long) id);
+            } else {
+                // Caso id seja um Integer, emprega setLong()
+                pstmt.setInt(1, (Integer) id);
             }
+            
         } catch (SQLException ex) {
             Logger.getLogger(Dao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        return objects.isEmpty() ? null : objects;
     }
 
+    /**
+     * Insere os valores do objeto na senteça SQL específica para inserção ou
+     * atualização de registros no banco de dados.
+     *
+     * @param pstmt Declaração previamente preparada.
+     * @param id Chave primária a ser inserida na sentença SQL.
+     */
+    public abstract void montarDeclaracao(PreparedStatement pstmt, Paciente o);
 
+    /**
+     * Cria objeto a partir do registro fornecido pelo banco de dados.
+     *
+     * @param resultSet Resultado proveniente do banco de dados relacional.
+     * @return Objeto constituído.
+     */
+    public abstract Paciente extrairObjeto(ResultSet resultSet);
+
+    /**
+     * Cria objeto(s) a partir do(s) registro(s) fornecido(s) pelo banco de
+     * dados.
+     *
+     * @param resultSet Resultado(s) proveniente(s) do banco de dados
+     * relacional.
+     * @return Lista de objeto(s) constituído(s).
+     */
+    public abstract ArrayList<Paciente> extrairObjetos(ResultSet resultSet);
 }

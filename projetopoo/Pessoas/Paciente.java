@@ -3,50 +3,95 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.projetopoo.Pessoas;
+
+import com.mycompany.projetopoo.Dados.Pessoa;
+import java.time.LocalDate;
+
 /**
  *
  * @author suKarolainy
  */
-public class Paciente {
-    private String cpf;
-    private Integer id;
-    private String nome;
+public class Paciente extends Pessoa{
+
+    private Pessoa pessoa;
+    private String profissao;
+    private String tipoSanguineo;
+    private String alergia;
+    private String doencasCronicas;
+    private String remediosControlados;
+    private boolean estado;
+
+    public Pessoa getPessoa() {
+        return pessoa;
+    }
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+    }
+
+    public void getDataNascimento(String text) {
+        this.setDataNascimento(LocalDate.MIN.now());
+    }
 
     public Paciente() {
     }
 
-    public Paciente(Integer id, String cpf, String nome ) {
-        this.id = id;
-        this.cpf = cpf;
-        this.nome = nome;
+    public Paciente(String profissao, String tipoSanguineo, String alergia, String doencasCronicas, String remediosControlados, boolean estado) {
+        this.profissao = profissao;
+        this.tipoSanguineo = tipoSanguineo;
+        this.alergia = alergia;
+        this.doencasCronicas = doencasCronicas;
+        this.remediosControlados = remediosControlados;
+        this.estado = estado;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getProfissao() {
+        return profissao;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setProfissao(String profissao) {
+        this.profissao = profissao;
     }
 
-    public Integer getId() {
-        return id;
+    public String getTipoSanguineo(String text) {
+        return tipoSanguineo;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setTipoSanguineo(String tipoSanguineo) {
+        this.tipoSanguineo = tipoSanguineo;
     }
 
-    public String getNome() {
-        return nome;
+    public String getAlergia(java.lang.String text) {
+        return alergia;
     }
 
-    public void setPessoaPaciente(String nome) {
-        this.nome = nome;
+    public void setAlergia(String alergia) {
+        this.alergia = alergia;
     }
+
+    public String getDoencasCronicas() {
+        return doencasCronicas;
+    }
+
+    public void setDoencasCronicas(String doencasCronicas) {
+        this.doencasCronicas = doencasCronicas;
+    }
+
+    public String getRemediosControlados() {
+        return remediosControlados;
+    }
+
+    public void setRemediosControlados(String remediosControlados) {
+        this.remediosControlados = remediosControlados;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     
-    @Override
-    public String toString(){
-        return  " id=" + id + ", cpf=" + cpf + ", nome=" + nome;
-    }
 }

@@ -3,37 +3,46 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.projetopoo.DAOs;
-import com.mycompany.projetopoo.Pessoas.Paciente;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 /**
  *
  * @author suKarolainy
+ * @param <Paciente>
  */
-public interface IDAO {
-
-    public String getSaveStatment();
+public interface IDAO<Paciente, K> {
     
-    public String getUpdateStatment();
-    
-    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Paciente e);
+    /**
+     * Executa o procedimento de salvamento (inserção ou atualização) do objeto
+     * mapeado no banco de dados.
+     * 
+     * @param o Objeto a ser salvo no banco de dados.
+     * @return Valor da chave primária gerada pela inclusão de um novo registro
+     * ou mesmo valor da chave primária do objeto original presistido anteriormente.
+     */
+    public K salvar(Paciente o);
 
-    public String getFindByIdStatment();
+    /**
+     * Exclui o registro do objeto no banco de dados.
+     * 
+     * @param o Objeto a ser excluído.<br>
+     * <i>OBS.: o único valor útil é a identidade do objeto mapeado.</i>
+     * @return Condição de sucesso ou falha na exclusão.
+     */
+    public Boolean excluir(Paciente o);
 
-    public Paciente findById(Long id);
+    /**
+     * Recupera um dado objeto mapeado para o banco de dados por meio de sua
+     * chave de identidade.
+     * 
+     * @param id Identidade do objeto.
+     * @return Objeto segundo registro persistido.
+     */
+    public Paciente localizarPorId(K id);
 
-    public String getFindAllStatment();
-
-    public List<Paciente> findAll();
-
-    public String getMoveToTrashStatement();
-    public void moveToTrash(Paciente e);
-
-    public String getRestoreFromTrashStatement();
-    public void restoreFromTrash(Long id);
-   
-
-    public List<Paciente> extractObjects(ResultSet resultSet);
+    /**
+     * Recupera todos os objetos mapeados para o banco de dados do tipo específico.
+     * @return Lista (geralmente um <code>ArrayList<T></code>) de objetos persistidos.
+     */
+    public List<Paciente> localizarTodos();
 
 }
