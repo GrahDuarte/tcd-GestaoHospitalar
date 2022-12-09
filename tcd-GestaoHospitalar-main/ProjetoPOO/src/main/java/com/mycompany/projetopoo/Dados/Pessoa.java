@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.projetopoo.Dados;
 
 import java.time.LocalDate;
@@ -17,19 +13,19 @@ public class Pessoa{
     private LocalDate dataNascimento;
     private String telefone;
     private String email;
-    public Endereco endereco;
+    public Endereço endereço;
 
     public Pessoa() {
     }
 
-    public Pessoa(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereço) {
+    public Pessoa(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereço endereço) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
         this.email = email;
-        this.endereco = endereço;
+        this.endereço = endereço;
     }
 
     public Long getId() {
@@ -80,15 +76,12 @@ public class Pessoa{
         this.email = email;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
+    public Endereço getEndereco() {
+        return endereço;
     }
 
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-    
-
-    
+    public void setEndereco(Endereço endereco) {
+        this.endereço = endereço;
+    } 
      
 }
