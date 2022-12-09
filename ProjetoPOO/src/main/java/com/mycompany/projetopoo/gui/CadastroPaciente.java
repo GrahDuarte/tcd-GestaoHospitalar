@@ -5,7 +5,7 @@
 package com.mycompany.projetopoo.gui;
 
 import com.mycompany.projetopoo.Pessoas.Paciente;
-import com.mycompany.projetopoo.Dados.Endereço;
+import com.mycompany.projetopoo.Dados.Endereco;
 import java.time.LocalDate;
 
 /**
@@ -249,15 +249,15 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
         paciente.setTelefone(celularTxt.getText());
         paciente.setEmail(emailTxt.getText());
         
-        Endereço endereço = new Endereço();
+        Endereco endereco = new Endereco();
         
-        endereço.setPais(paisTxt.getText());
-        endereço.setEstado(estadoTxt.getText());
-        endereço.setCidade(cidadeTxt.getText());
-        endereço.setBairro(bairroTxt.getText());
-        endereço.setLogradouro(logradouroTxt.getText());
-        //endereço.setNumero(numTxt.getText());
-        endereço.setComplemento(complementoTxt.getText());
+        endereco.setPais(paisTxt.getText());
+        endereco.setEstado(estadoTxt.getText());
+        endereco.setCidade(cidadeTxt.getText());
+        endereco.setBairro(bairroTxt.getText());
+        endereco.setLogradouro(logradouroTxt.getText());
+        //endereco.setNumero(numTxt.getText());
+        endereco.setComplemento(complementoTxt.getText());
         
         System.out.println("\nPaciente cadastrado");
         System.out.println("\nDados do paciente salvo: \nNome:" + paciente.getNome());
@@ -266,13 +266,13 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
         System.out.println("\nNumero de celular: " + paciente.getTelefone());
         System.out.println("\nEmail: " + paciente.getEmail());
         
-        System.out.println("\nEndereço do paciente cadastrado: \nPaís: " + endereço.getPais());
-        System.out.println("\nEstado: " + endereço.getEstado());
-        System.out.println("\nCidade: " + endereço.getCidade());
-        System.out.println("\nBairro: " + endereço.getBairro());
-        System.out.println("\nLogradouro: " + endereço.getLogradouro());
+        System.out.println("\nEndereço do paciente cadastrado: \nPaís: " + endereco.getPais());
+        System.out.println("\nEstado: " + endereco.getEstado());
+        System.out.println("\nCidade: " + endereco.getCidade());
+        System.out.println("\nBairro: " + endereco.getBairro());
+        System.out.println("\nLogradouro: " + endereco.getLogradouro());
         System.out.println("\nNumero: ");
-        System.out.println("\nComplemento: " + endereço.getComplemento());
+        System.out.println("\nComplemento: " + endereco.getComplemento());
         System.out.println("Fim");
     }//GEN-LAST:event_saveBtnActionPerformed
 
