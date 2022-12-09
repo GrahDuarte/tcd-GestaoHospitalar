@@ -4,9 +4,7 @@
  */
 package com.mycompany.projetopoo.Pessoas;
 
-import com.mycompany.projetopoo.Dados.Endereco;
 import com.mycompany.projetopoo.Dados.Pessoa;
-import java.time.LocalDate;
 
 /**
  *
@@ -17,10 +15,6 @@ public class Medico extends Pessoa{
     private String especialidade;
 
     public Medico() {
-    }
-
-    public Medico(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereço) {
-        super(id, nome, cpf, dataNascimento, telefone, email, endereço);
     }
 
     public Medico(String crm, String especialidade) {
