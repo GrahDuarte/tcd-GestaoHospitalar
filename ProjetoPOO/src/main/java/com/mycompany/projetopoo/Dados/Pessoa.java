@@ -13,21 +13,24 @@ public class Pessoa{
     private LocalDate dataNascimento;
     private String telefone;
     private String email;
-    public Endereço endereço;
+    public Endereco endereco;
 
+    //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Pessoa() {
     }
 
-    public Pessoa(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereço endereço) {
+    public Pessoa(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereco) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
         this.telefone = telefone;
         this.email = email;
-        this.endereço = endereço;
+        this.endereco = endereco;
     }
+    //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public Long getId() {
         return id;
     }
@@ -76,12 +79,13 @@ public class Pessoa{
         this.email = email;
     }
 
-    public Endereço getEndereco() {
-        return endereço;
+    public Endereco getEndereco() {
+        return endereco;
     }
 
-    public void setEndereco(Endereço endereco) {
-        this.endereço = endereço;
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     } 
-     
+    //</editor-fold> 
+    
 }

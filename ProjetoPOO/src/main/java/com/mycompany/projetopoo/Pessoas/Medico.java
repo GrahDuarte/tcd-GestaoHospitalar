@@ -14,6 +14,7 @@ public class Medico extends Pessoa{
     private String crm;
     private String especialidade;
 
+    //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Medico() {
     }
 
@@ -21,7 +22,9 @@ public class Medico extends Pessoa{
         this.crm = crm;
         this.especialidade = especialidade;
     }
-
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public String getCrm() {
         return crm;
     }
@@ -37,7 +40,8 @@ public class Medico extends Pessoa{
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
     }
-
+    //</editor-fold>
+    
     @Override
     public String toString() {
         return "Medico{" 

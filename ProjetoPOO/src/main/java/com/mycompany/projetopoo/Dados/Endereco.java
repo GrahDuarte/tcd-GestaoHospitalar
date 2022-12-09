@@ -8,7 +8,7 @@ package com.mycompany.projetopoo.Dados;
  *
  * @author suKarolainy
  */
-public class Endereço {
+public class Endereco {
     private String pais;
     private String estado;
     private String cidade;
@@ -17,10 +17,11 @@ public class Endereço {
     private Integer numero;
     private String complemento;
 
-    public Endereço() {
+    //<editor-fold defaultstate="collapsed" desc="Constructors">
+    public Endereco() {
     }
 
-    public Endereço(String pais, String estado, String cidade, String bairro, String logradouro, Integer numero, String complemento) {
+    public Endereco(String pais, String estado, String cidade, String bairro, String logradouro, Integer numero, String complemento) {
         this.pais = pais;
         this.estado = estado;
         this.cidade = cidade;
@@ -29,7 +30,9 @@ public class Endereço {
         this.numero = numero;
         this.complemento = complemento;
     }
-
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public String getPais() {
         return pais;
     }
@@ -85,11 +88,11 @@ public class Endereço {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
-
+    //</editor-fold>
 
     @Override
     public String toString(){
-        return "endereço{"
+        return "endereco{"
                 + "pais=" + pais
                 + ",estado=" + estado
                 + ",cidade=" + cidade

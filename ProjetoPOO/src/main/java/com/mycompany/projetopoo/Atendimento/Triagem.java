@@ -5,7 +5,6 @@
 package com.mycompany.projetopoo.Atendimento;
 
 import com.mycompany.projetopoo.Pessoas.Enfermeiro;
-import com.mycompany.projetopoo.Pessoas.Paciente;
 
 /**
  *
@@ -15,8 +14,8 @@ public class Triagem {
     private Enfermeiro enfermeiroTriador;
     private String motivoAtendimento;
     private String prioridadeAtendimento;
-    private Paciente paciente;
 
+    //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Triagem() {
     }
 
@@ -25,7 +24,9 @@ public class Triagem {
         this.motivoAtendimento = motivoAtendimento;
         this.prioridadeAtendimento = prioridadeAtendimento;
     }
+    //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public Enfermeiro getEnfermeiroTriador() {
         return enfermeiroTriador;
     }
@@ -49,26 +50,14 @@ public class Triagem {
     public void setPrioridadeAtendimento(String prioridadeAtendimento) {
         this.prioridadeAtendimento = prioridadeAtendimento;
     }
-
-    public Triagem(Paciente paciente) {
-        this.paciente = paciente;
-    }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
+    //</editor-fold>
 
     @Override
     public String toString() {
         return "Triagem{" 
                 + "enfermeiroTriador=" + enfermeiroTriador 
                 + ", motivoAtendimento=" + motivoAtendimento 
-                + ", prioridadeAtendimento=" + prioridadeAtendimento 
-                + ", paciente=" + paciente 
+                + ", prioridadeAtendimento=" + prioridadeAtendimento
                 + '}';
     }
 }

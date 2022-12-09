@@ -17,6 +17,7 @@ public class Atendimento {
     private Consulta consulta;
     private Paciente paciente;
 
+    //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Atendimento() {
     }
 
@@ -26,7 +27,9 @@ public class Atendimento {
         this.consulta = consulta;
         this.paciente = paciente;
     }
+    //</editor-fold>
 
+    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public LocalDateTime getHorarioAtendimento() {
         return horarioAtendimento;
     }
@@ -58,6 +61,7 @@ public class Atendimento {
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
+    //</editor-fold>
 
     @Override
     public String toString() {

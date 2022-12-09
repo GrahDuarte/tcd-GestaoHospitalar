@@ -14,6 +14,7 @@ public class Exame {
     private Medico medicoEspecialista;
     private String tipoExame;
 
+    //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Exame() {
     }
 
@@ -21,7 +22,9 @@ public class Exame {
         this.medicoEspecialista = medicoEspecialista;
         this.tipoExame = tipoExame;
     }
-
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public Medico getMedicoEspecialista() {
         return medicoEspecialista;
     }
@@ -37,7 +40,8 @@ public class Exame {
     public void setTipoExame(String tipoExame) {
         this.tipoExame = tipoExame;
     }
-
+    //</editor-fold>
+    
     @Override
     public String toString() {
         return "Exame{" 
@@ -45,6 +49,4 @@ public class Exame {
                 + ", tipoExame=" + tipoExame 
                 + '}';
     }
-    
-    
 }

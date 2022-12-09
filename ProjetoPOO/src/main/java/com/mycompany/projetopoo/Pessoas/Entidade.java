@@ -29,7 +29,9 @@ public abstract class Entidade {
     public Entidade(Long id) {
         this.id = id;
     }
-
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public Long getId() {
         return id;
     }
@@ -37,4 +39,5 @@ public abstract class Entidade {
     public void setId(Long id) {
         this.id = id;
     }
+    //</editor-fold>
 }

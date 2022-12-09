@@ -6,6 +6,7 @@ package com.mycompany.projetopoo.Atendimento;
 
 import com.mycompany.projetopoo.Pessoas.Medico;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  *
@@ -15,18 +16,21 @@ public class Internacao {
     private LocalDateTime entrada;
     private LocalDateTime alta;
     private Medico medicoResponsavel;
-    private Exame examesRealizados;
+    private List<Exame> examesRealizados;
 
+    //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Internacao() {
     }
 
-    public Internacao(LocalDateTime entrada, LocalDateTime alta, Medico medicoResponsavel, Exame examesRealizados) {
+    public Internacao(LocalDateTime entrada, LocalDateTime alta, Medico medicoResponsavel, List<Exame> examesRealizados) {
         this.entrada = entrada;
         this.alta = alta;
         this.medicoResponsavel = medicoResponsavel;
         this.examesRealizados = examesRealizados;
     }
-
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public LocalDateTime getEntrada() {
         return entrada;
     }
@@ -51,13 +55,14 @@ public class Internacao {
         this.medicoResponsavel = medicoResponsavel;
     }
 
-    public Exame getExamesRealizados() {
+    public List<Exame> getExamesRealizados() {
         return examesRealizados;
     }
 
-    public void setExamesRealizados(Exame examesRealizados) {
+    public void setExamesRealizados(List<Exame> examesRealizados) {
         this.examesRealizados = examesRealizados;
     }
+    //</editor-fold>
 
     @Override
     public String toString() {

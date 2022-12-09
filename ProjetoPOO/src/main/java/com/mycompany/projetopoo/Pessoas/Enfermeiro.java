@@ -13,13 +13,16 @@ import com.mycompany.projetopoo.Dados.Pessoa;
 public class Enfermeiro extends Pessoa{
     private String coren;
 
+    //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Enfermeiro() {
     }
 
     public Enfermeiro(String coren) {
         this.coren = coren;
     }
-
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public String getCoren() {
         return coren;
     }
@@ -27,7 +30,8 @@ public class Enfermeiro extends Pessoa{
     public void setCoren(String coren) {
         this.coren = coren;
     }    
-
+    //</editor-fold>
+    
     @Override
     public String toString() {
         return "Enfermeiro{" 
