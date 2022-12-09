@@ -6,6 +6,7 @@ package com.mycompany.projetopoo.Pessoas;
 
 import com.mycompany.projetopoo.Dados.Pessoa;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  *
@@ -15,27 +16,30 @@ public class Paciente extends Pessoa{
 
     private String profissao;
     private String tipoSanguineo;
-    private String alergia;
-    private String doencasCronicas;
-    private String remediosControlados;
+    private List<String> alergias;
+    private List<String> doencasCronicas;
+    private List<String> medicamentosControlados;
     private boolean estado;
 
     public void getDataNascimento(String text) {
         this.setDataNascimento(LocalDate.MIN.now());
     }
-
+    
+    //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Paciente() {
     }
 
-    public Paciente(String profissao, String tipoSanguineo, String alergia, String doencasCronicas, String remediosControlados, boolean estado) {
+    public Paciente(String profissao, String tipoSanguineo, List<String> alergias, List<String> doencasCronicas, List<String> medicamentosControlados, boolean estado) {
         this.profissao = profissao;
         this.tipoSanguineo = tipoSanguineo;
-        this.alergia = alergia;
+        this.alergias = alergias;
         this.doencasCronicas = doencasCronicas;
-        this.remediosControlados = remediosControlados;
+        this.medicamentosControlados = medicamentosControlados;
         this.estado = estado;
     }
-
+    //</editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public String getProfissao() {
         return profissao;
     }
@@ -52,29 +56,29 @@ public class Paciente extends Pessoa{
         this.tipoSanguineo = tipoSanguineo;
     }
 
-    public String getAlergia(java.lang.String text) {
-        return alergia;
+    public List<String> getAlergias() {
+        return alergias;
     }
 
-    public void setAlergia(String alergia) {
-        this.alergia = alergia;
+    public void setAlergias(List<String> alergias) {
+        this.alergias = alergias;
     }
 
-    public String getDoencasCronicas() {
+    public List<String> getDoencasCronicas() {
         return doencasCronicas;
     }
 
-    public void setDoencasCronicas(String doencasCronicas) {
+    public void setDoencasCronicas(List<String> doencasCronicas) {
         this.doencasCronicas = doencasCronicas;
     }
 
-    public String getRemediosControlados() {
-        return remediosControlados;
+    public List<String> getMedicamentosControlados() {
+        return medicamentosControlados;
     }
 
-    public void setRemediosControlados(String remediosControlados) {
-        this.remediosControlados = remediosControlados;
-    }
+    public void setMedicamentosControlados(List<String> medicamentosControlados) {
+        this.medicamentosControlados = medicamentosControlados;
+    }    
 
     public boolean isEstado() {
         return estado;
@@ -83,17 +87,18 @@ public class Paciente extends Pessoa{
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
+    //</editor-fold>
 
     @Override
     public String toString() {
         return "Paciente{" 
                 + "profissao=" + profissao 
                 + ", tipoSanguineo=" + tipoSanguineo 
-                + ", alergia=" + alergia 
+                + ", alergias=" + alergias 
                 + ", doencasCronicas=" + doencasCronicas 
-                + ", remediosControlados=" + remediosControlados 
-                + ", estado=" + estado + '}';
-    }
-
+                + ", medicamentosControlados=" + medicamentosControlados 
+                + ", estado=" + estado 
+                + '}';
+    }  
     
 }
