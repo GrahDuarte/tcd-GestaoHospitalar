@@ -4,7 +4,9 @@
  */
 package com.mycompany.projetopoo.gui;
 
+import com.mycompany.projetopoo.DAOs.DbConnection;
 import java.beans.PropertyVetoException;
+import java.sql.Connection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JInternalFrame;
@@ -198,6 +200,10 @@ public class Principal extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
+        Connection conn = DbConnection.getConnection();
+        
+        System.out.println("> " + conn);
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -221,10 +227,13 @@ public class Principal extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             new Principal().setVisible(true);
         });
+        
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

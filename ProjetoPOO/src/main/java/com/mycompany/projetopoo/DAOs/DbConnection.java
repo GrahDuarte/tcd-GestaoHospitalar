@@ -47,40 +47,14 @@ public class DbConnection {
      * Inicialização de valores estáticos.
      */
     static {
-        if (false) {
-            // Servidor Local
-            URL = "jdbc:mysql://127.0.0.1:3306/tarefas"
+
+            URL = "jdbc:mysql://127.0.0.1:3306/" + Dao.DB
                     + "?useUnicode=true"
                     + "&useJDBCCompliantTimezoneShift=true"
                     + "&serverTimezone=UTC"
                     + "&autoReconnect=true";
             usuario = "root";
             senha = "";
-
-        } else {
-            // Servidor remoto
-            Properties prop = new Properties();
-            String propFileName = "bd.properties";
-
-            InputStream inputStream = DbConnection.class.getClassLoader()
-                    .getResourceAsStream(propFileName);
-
-            if (inputStream != null) {
-                try {
-                    prop.load(inputStream);
-                } catch (IOException ex) {
-                    Logger.getLogger(DbConnection.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                System.out.println("Arquivo de propriedades '" + propFileName
-                        + "' não encontrado no classpath");
-                System.exit(0);
-            }
-
-            URL = prop.getProperty("url");
-            usuario = prop.getProperty("user");
-            senha = prop.getProperty("password");
-        }
 
     }
 
@@ -117,7 +91,7 @@ public class DbConnection {
      *
      * @return Conexão com o banco de dados.
      */
-    public static Connection getConexao() {
+    public static Connection getConnection() {
 
         // Se não há uma conexão estabelecida...
         if (conexao == null) {

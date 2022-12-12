@@ -8,55 +8,55 @@ import com.mycompany.projetopoo.Pessoas.Paciente;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Classe PacienteDao
  *
- * @author suKarolainy
+ * CREATE TABLE `paciente` (
+ *  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+ *  `title` varchar(100) NOT NULL,
+ *  `year` smallint(6) NOT NULL,
+ *  `rate` char(3) NOT NULL,
+ *  `genre_id` bigint(20) unsigned NOT NULL,
+ *  PRIMARY KEY (`id`),
+ *  UNIQUE KEY `id` (`id`),
+ *  KEY `genre_id` (`genre_id`),
+ *  CONSTRAINT `movie_ibfk_1` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`id`)
+ * ) ENGINE=InnoDB;
+ *
+ * @author Nós;
+ * @version 0.1, 2022-12-02
  */
-public class PacienteDao extends Dao<Paciente, Long> {
-    
-    
+public class PacienteDao
+        extends Dao<Paciente> {
+
+    public static final String TABLE = "paciente";
+
     @Override
-    public String getDeclaracaoInsert() {
-        return "INSERT INTO CLIENTE (id, cpf, nome) VALUES (default, ?, ?);";
-    }
-    @Override
-    public String getDeclaracaoSelectPorId() {
-        return "SELECT * FROM CLIENTE WHERE id = ?;";
+    public String getSaveStatment() {
+        return "insert into " + TABLE
+                + " (nome, cpf)"
+                + " values (?, ?)";
     }
 
     @Override
-    public String getDeclaracaoSelectTodos() {
-        return "SELECT * FROM CLIENTE;";
-    }
-    
-    public String getInformacaoClientes(){
-        return "SELECT id, cpf, nome, telefone, endereco FROM CLIENTE;";
+    public String getUpdateStatment() {
+        return "update " + TABLE
+                + " set nome = ?, cpf = ?"
+                + " where id = ?";
     }
 
     @Override
-    public String getDeclaracaoUpdate() {
-        return "UPDATE CLIENTE SET cpf = ?, nome = ?;";
-    }
-
-    @Override
-    public String getDeclaracaoDelete() {
-        return "DELETE FROM CLIENTE WHERE id = ?;";
-    }
-
-    @Override
-    public void montarDeclaracao(PreparedStatement pstmt, Paciente o) {
+    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Paciente e) {
         try {
-            if (o.getId() == null || o.getId() == 0) {
-                pstmt.setString(1, o.getCpf());
-                pstmt.setString(2, o.getNome());
-            } else {
-                pstmt.setString(1, o.getCpf());
-                pstmt.setString(2, o.getNome());
-                pstmt.setLong(9, o.getId());
+            pstmt.setString(1, e.getNome());
+            pstmt.setString(2, e.getCpf());
+
+            if (e.getId() != null && e.getId() > 0) {
+                pstmt.setLong(3, e.getId());
             }
         } catch (SQLException ex) {
             Logger.getLogger(PacienteDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,120 +64,91 @@ public class PacienteDao extends Dao<Paciente, Long> {
     }
 
     @Override
-    public Paciente extrairObjeto(ResultSet resultSet) {
-        // Cria referência para montagem do cliente
-        Paciente paciente = new Paciente();
-
-        // Tenta recuperar dados do registro retornado pelo banco de dados
-        // e ajustar o estado do cliente a ser mapeado
-        try {
-            
-            paciente.setId(resultSet.getLong("id"));
-            paciente.setCpf(resultSet.getString("cpf"));
-            paciente.setNome(resultSet.getString("Ana"));
-            
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        // Devolve a tarefa mapeada
-        return paciente;
+    public String getFindByIdStatment() {
+        return "select id, nome, cpf"
+                + " from " + TABLE
+                + " where id = ?";
     }
 
     @Override
-    public ArrayList<Paciente> extrairObjetos(ResultSet resultSet) {
-        // Cria referência para inserção dos clientes a serem mapeadas
-        ArrayList<Paciente> pacientes = new ArrayList<>();
-        
-        // Tenta...
-        try {
-            // ... entquanto houver registros a serem processados
-            while (resultSet.next()) {
-                // Cria referência para montagem do paciente
-                Paciente paciente = new Paciente();
-
-                // Tenta recuperar dados do registro retornado pelo banco 
-                // de dados e ajustar o estado do cliente a ser mapeado
-                paciente.setId(resultSet.getLong("id"));
-                paciente.setCpf(resultSet.getString("cpf"));
-                paciente.setNome(resultSet.getString("Ana"));
-                
-                // Insere o cliente na lista de clientes recuperados
-                pacientes.add(paciente);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PacienteDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        // Devolve a lista de clientes reconstituídas dos registros do banco 
-        // de dados
-        return pacientes;
+    public String getFindAllStatment() {
+        return "select id, nome, cpf"
+                + " from " + TABLE;
     }
-    
-    /*
-     * Cria lista de objetos Cliente recuperados do banco de dados
-     * somente incluindo id, cpf, nome, telefone e endereço
-     * @param resultSet Resultado proveniente do banco de dados relacional.
-     * @return ArrayList Cliente
-     */
-    public ArrayList<Paciente> extrairObjetosCliente(ResultSet resultSet) {
-        // Cria referência para inserção das tarefas a serem mapeadas
-        ArrayList<Paciente> pacientes = new ArrayList<>();
-        
-        // Tenta...
-        try {
-            // ... entquanto houver registros a serem processados
-            while (resultSet.next()) {
-                // Cria referência para montagem do cliente
-                Paciente paciente = new Paciente();
 
-                // Tenta recuperar dados do registro retornado pelo banco 
-                // de dados e ajustar o estado do cliente a ser mapeado
-                paciente.setId(resultSet.getLong("id"));
-                paciente.setCpf(resultSet.getString("cpf"));
-                paciente.setNome(resultSet.getString("Ana"));
-                
-                // Insere o cliente na lista de clientes recuperados
-                pacientes.add(paciente);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(PacienteDao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        // Devolve a lista de clientes reconstituídos dos registros do banco 
-        // de dados
-        return pacientes;
-    }
-    
     /**
-     * Retorna ArrayList do cliente com seus dados 
-     * ( id, cpf, nome, telefone e endereço)
-     * @return ArrayList Cliente
+     * SQL statement to use to find movies by genre
+     *
+     * @return SQL statement
      */
-    public ArrayList<Paciente> retornaDadosClientes() {
+    
+    private String getfindAllByPartialNameStatment() {
+        return " select id, nome, cpf"
+                + " from " + TABLE
+                + " where nome like ?";
+    }
+    
+    public List<Paciente> findAllByPartialName(String partialName) {
 
-        // Declara referência para reter o(s) objeto(s) a ser(em) recuperado(s)
-        ArrayList<Paciente> objetos = new ArrayList<>();
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConnection().prepareStatement(
+                        getfindAllByPartialNameStatment())) {
 
-        // Tenta preparar uma sentença SQL para a conexão já estabelecida
-        try (PreparedStatement pstmt
-                = DbConnection.getConexao().prepareStatement(
-                        // Sentença SQL para recuperação de todos os registros
-                        getInformacaoClientes())) {
+            preparedStatement.setString(1, "%" + partialName + "%");
 
-            // Executa o comando SQL
-            ResultSet resultSet = pstmt.executeQuery();
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
 
-            // Extrai objeto(s) do(s) respectivo(s) registro(s) do banco de dados
-            objetos = extrairObjetosCliente(resultSet);
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            // Returns the respective object
+            return extractObjects(resultSet);
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
         }
 
-        // Devolve uma lista vazia (nenhum registro encontrado) 
-        // ou a relação de objeto(s) recuperado(s)
-        return objetos;
+        return null;
     }
 
+    @Override
+    public String getMoveToTrashStatement() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String getRestoreFromTrashStatement() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String getFindAllOnTrashStatement() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    /**
+     * Extracts the movie from the result set with the associated genre
+     *
+     * @param resultSet The record in the database
+     * @return The movie located
+     */
+    @Override
+    public Paciente extractObject(ResultSet resultSet) {
+        if (resultSet != null) {
+            try {
+                return new Paciente (
+                        resultSet.getLong("id"),
+                        resultSet.getString("nome"),
+                        resultSet.getString("cpf")
+                );
+            } catch (SQLException ex) {
+                Logger.getLogger(PacienteDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return null;
+    }
+
+    
 }

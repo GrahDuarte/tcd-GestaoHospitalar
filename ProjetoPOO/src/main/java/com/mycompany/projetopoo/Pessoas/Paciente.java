@@ -4,6 +4,7 @@
  */
 package com.mycompany.projetopoo.Pessoas;
 
+import com.mycompany.projetopoo.Dados.Endereco;
 import com.mycompany.projetopoo.Dados.Pessoa;
 import java.time.LocalDate;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author suKarolainy
  */
-public class Paciente extends Pessoa{
+public class Paciente extends Pessoa {
 
     private String profissao;
     private String tipoSanguineo;
@@ -28,6 +29,12 @@ public class Paciente extends Pessoa{
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Paciente() {
     }
+
+    public Paciente(Long id, String nome, String cpf) {
+        super(id, nome, cpf);
+    }
+    
+    
 
     public Paciente(String profissao, String tipoSanguineo, List<String> alergias, List<String> doencasCronicas, List<String> medicamentosControlados, boolean estado) {
         this.profissao = profissao;

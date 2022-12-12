@@ -5,8 +5,13 @@
 package com.mycompany.projetopoo.gui;
 
 import com.mycompany.projetopoo.Pessoas.Paciente;
+import com.mycompany.projetopoo.DAOs.PacienteDao;
 import com.mycompany.projetopoo.Dados.Endereco;
+import java.sql.PreparedStatement;
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -241,8 +246,24 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
-        Paciente paciente = new Paciente();
+        //Paciente paciente = new Paciente();
         
+        try {
+            new PacienteDao().saveOrUpdate(
+                    new Paciente(null,
+                            nomeTxt.getText(),
+                            cpfTxt.getText())
+            );
+        } catch (Exception ex) {
+            Logger.getLogger(CadastroPaciente.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Record not saved.\nCheck the data or the network connection and try again.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        nomeTxt.setText(null);
+        nomeTxt.requestFocus();
+        cpfTxt.setText(null);
+        
+        /*paciente.setId(Long.MIN_VALUE);
         paciente.setNome(nomeTxt.getText());
         paciente.setCpf(cpfTxt.getText());
         paciente.setDataNascimento(LocalDate.now());
@@ -273,7 +294,7 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
         System.out.println("\nLogradouro: " + endereco.getLogradouro());
         System.out.println("\nNumero: ");
         System.out.println("\nComplemento: " + endereco.getComplemento());
-        System.out.println("Fim");
+        System.out.println("Fim");*/
     }//GEN-LAST:event_saveBtnActionPerformed
 
 

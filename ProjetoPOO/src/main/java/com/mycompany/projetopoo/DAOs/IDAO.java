@@ -3,46 +3,51 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.mycompany.projetopoo.DAOs;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
+
 /**
+ * Interface IDao
  *
- * @author suKarolainy
- * @param <Paciente>
+ * @author Nós;
+ * @version 0.1, 2022-10-24
+ * @param <T> Data type
  */
-public interface IDAO<Paciente, K> {
-    
-    /**
-     * Executa o procedimento de salvamento (inserção ou atualização) do objeto
-     * mapeado no banco de dados.
-     * 
-     * @param o Objeto a ser salvo no banco de dados.
-     * @return Valor da chave primária gerada pela inclusão de um novo registro
-     * ou mesmo valor da chave primária do objeto original presistido anteriormente.
-     */
-    public K salvar(Paciente o);
+public interface IDAO<T> {
 
-    /**
-     * Exclui o registro do objeto no banco de dados.
-     * 
-     * @param o Objeto a ser excluído.<br>
-     * <i>OBS.: o único valor útil é a identidade do objeto mapeado.</i>
-     * @return Condição de sucesso ou falha na exclusão.
-     */
-    public Boolean excluir(Paciente o);
+    // Save
+    public String getSaveStatment();
 
-    /**
-     * Recupera um dado objeto mapeado para o banco de dados por meio de sua
-     * chave de identidade.
-     * 
-     * @param id Identidade do objeto.
-     * @return Objeto segundo registro persistido.
-     */
-    public Paciente localizarPorId(K id);
+    public String getUpdateStatment();
 
-    /**
-     * Recupera todos os objetos mapeados para o banco de dados do tipo específico.
-     * @return Lista (geralmente um <code>ArrayList<T></code>) de objetos persistidos.
-     */
-    public List<Paciente> localizarTodos();
+    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, T e);
+
+    public Long saveOrUpdate(T e) throws Exception;
+
+    // Get by ID
+    public String getFindByIdStatment();
+
+    public T findById(Long id);
+
+    // Get all
+    public String getFindAllStatment();
+
+    public List<T> findAll();
+
+    // Trash
+    public String getMoveToTrashStatement();
+    public void moveToTrash(T e);
+
+    public String getRestoreFromTrashStatement();
+    public void restoreFromTrash(Long id); // OU T e
+
+    public String getFindAllOnTrashStatement();
+    public List<T> findAllOnTrash();
+
+    // Assembly objects
+    public T extractObject(ResultSet resultSet);
+
+    public List<T> extractObjects(ResultSet resultSet);
 
 }

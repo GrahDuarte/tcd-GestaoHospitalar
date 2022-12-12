@@ -1,4 +1,5 @@
 package com.mycompany.projetopoo.Dados;
+import com.mycompany.projetopoo.Pessoas.Entity;
 
 import java.time.LocalDate;
 
@@ -6,8 +7,7 @@ import java.time.LocalDate;
  *
  * @author suKarolainy
  */
-public class Pessoa{
-    public Long id;
+public class Pessoa extends Entity {
     private String nome;
     private String cpf;
     private LocalDate dataNascimento;
@@ -19,8 +19,14 @@ public class Pessoa{
     public Pessoa() {
     }
 
-    public Pessoa(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereco) {
-        this.id = id;
+    public Pessoa(Long id, String nome, String cpf) {
+        super(id);
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+
+    
+    public Pessoa(String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereco) {
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
@@ -31,14 +37,6 @@ public class Pessoa{
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
     }
