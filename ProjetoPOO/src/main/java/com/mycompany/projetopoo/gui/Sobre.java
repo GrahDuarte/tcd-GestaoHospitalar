@@ -38,6 +38,10 @@ public class Sobre extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+
         jLabel1.setText("<html><p>IFNMG <i>Campus </i> Montes Claros</p> <ul> <li>Trabalho de conclusao de disciplina</li> <li>Programacao orientada a objetos</li><li>Prof. MSc. Luis Guisso</li> <li>Alunos: Emerson, Graciely, Lorena e Suellen</li> </ul></html>");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
