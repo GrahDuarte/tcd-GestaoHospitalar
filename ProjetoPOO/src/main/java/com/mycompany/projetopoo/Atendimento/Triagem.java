@@ -5,34 +5,88 @@
 package com.mycompany.projetopoo.Atendimento;
 
 import com.mycompany.projetopoo.Pessoas.Enfermeiro;
+import com.mycompany.projetopoo.Pessoas.Entity;
 
 /**
  *
  * @author suKarolainy
  */
-public class Triagem {
+public class Triagem extends Entity {
     private Enfermeiro enfermeiroTriador;
+    private Integer paciente_id; 
+    private String tipoSanguineo;
+    private String alergias;
+    private String doencasCronicas;
+    private String medicamentosControlados;
     private String motivoAtendimento;
     private String prioridadeAtendimento;
-
-    //<editor-fold defaultstate="collapsed" desc="Constructors">
+    private boolean estado;
     public Triagem() {
     }
 
-    public Triagem(Enfermeiro enfermeiroTriador, String motivoAtendimento, String prioridadeAtendimento) {
-        this.enfermeiroTriador = enfermeiroTriador;
+    public Triagem(String tipoSanguineo, String alergias, String doencasCronicas, String medicamentosControlados, String motivoAtendimento, String prioridadeAtendimento) {
+        this.paciente_id = paciente_id;
+        this.tipoSanguineo = tipoSanguineo;
+        this.alergias = alergias;
+        this.doencasCronicas = doencasCronicas;
+        this.medicamentosControlados = medicamentosControlados;
         this.motivoAtendimento = motivoAtendimento;
         this.prioridadeAtendimento = prioridadeAtendimento;
+        this.estado = estado;
     }
-    //</editor-fold>
 
-    //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
+    public Integer getPaciente_id() {
+        return paciente_id;
+    }
+
+    public void setPaciente_id(Integer paciente_id) {
+        this.paciente_id = paciente_id;
+    }
+
+    
+    public Triagem(Long id, boolean excluded) {
+        super(id, excluded);
+    }
+
+    
     public Enfermeiro getEnfermeiroTriador() {
         return enfermeiroTriador;
     }
 
     public void setEnfermeiroTriador(Enfermeiro enfermeiroTriador) {
         this.enfermeiroTriador = enfermeiroTriador;
+    }
+
+    public String getTipoSanguineo() {
+        return tipoSanguineo;
+    }
+
+    public void setTipoSanguineo(String tipoSanguineo) {
+        this.tipoSanguineo = tipoSanguineo;
+    }
+
+    public String getAlergias() {
+        return alergias;
+    }
+
+    public void setAlergias(String alergias) {
+        this.alergias = alergias;
+    }
+
+    public String getDoencasCronicas() {
+        return doencasCronicas;
+    }
+
+    public void setDoencasCronicas(String doencasCronicas) {
+        this.doencasCronicas = doencasCronicas;
+    }
+
+    public String getMedicamentosControlados() {
+        return medicamentosControlados;
+    }
+
+    public void setMedicamentosControlados(String medicamentosControlados) {
+        this.medicamentosControlados = medicamentosControlados;
     }
 
     public String getMotivoAtendimento() {
@@ -50,14 +104,30 @@ public class Triagem {
     public void setPrioridadeAtendimento(String prioridadeAtendimento) {
         this.prioridadeAtendimento = prioridadeAtendimento;
     }
-    //</editor-fold>
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Triagem{" 
                 + "enfermeiroTriador=" + enfermeiroTriador 
+                + ",tipoSanguineo=" + tipoSanguineo
+                + ",alergias=" + alergias
+                + ",doencasCronicas=" + doencasCronicas
+                + ",medicamentosControlados=" + medicamentosControlados
                 + ", motivoAtendimento=" + motivoAtendimento 
                 + ", prioridadeAtendimento=" + prioridadeAtendimento
+                + ",estado=" + estado
                 + '}';
     }
+
+
 }
