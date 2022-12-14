@@ -4,6 +4,7 @@
  */
 package com.mycompany.projetopoo.Atendimento;
 
+import com.mycompany.projetopoo.Pessoas.Entity;
 import com.mycompany.projetopoo.Pessoas.Paciente;
 import java.time.LocalDateTime;
 
@@ -11,12 +12,17 @@ import java.time.LocalDateTime;
  *
  * @author loren
  */
-public class Atendimento {
+public class Atendimento extends Entity{
     private LocalDateTime horarioAtendimento;
     private Triagem triagem;
     private Consulta consulta;
     private Paciente paciente;
 
+    public Atendimento(Long id) {
+        super(id);
+    }
+    
+ //atend tem chave estrangeira de paciente, triagem e consulta
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Atendimento() {
     }

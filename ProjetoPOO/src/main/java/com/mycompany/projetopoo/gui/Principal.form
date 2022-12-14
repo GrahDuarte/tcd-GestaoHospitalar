@@ -38,6 +38,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuAtendActionPerformed"/>
           </Events>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuAtendAtendimento">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Atendimento"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuAtendAtendimentoActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuAtendCadastrar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastrar paciente"/>

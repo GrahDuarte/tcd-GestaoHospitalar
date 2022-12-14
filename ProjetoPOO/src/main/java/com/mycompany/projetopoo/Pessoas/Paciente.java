@@ -4,10 +4,8 @@
  */
 package com.mycompany.projetopoo.Pessoas;
 
-import com.mycompany.projetopoo.Dados.Endereco;
 import com.mycompany.projetopoo.Dados.Pessoa;
 import java.time.LocalDate;
-import java.util.List;
 
 /**
  *

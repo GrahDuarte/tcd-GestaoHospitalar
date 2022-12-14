@@ -63,6 +63,7 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
         motivoTxt = new javax.swing.JTextField();
         prioridadeTxt = new javax.swing.JTextField();
         paciente_idTxt = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -72,7 +73,7 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
         tituloTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         tituloTxt.setText("Triagem do paciente");
 
-        idiLbl.setText("ID do paciente:");
+        idiLbl.setText("ID do atendimento:");
 
         enfLbl.setText("Enfermeiro triador:");
 
@@ -102,6 +103,14 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
                 tipoSangueTxtActionPerformed(evt);
             }
         });
+
+        paciente_idTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                paciente_idTxtActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Nome do paciente:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -137,16 +146,19 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
                                                 .addComponent(idiLbl, javax.swing.GroupLayout.Alignment.LEADING))
                                             .addGap(32, 32, 32))))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(doencasTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(tipoSangueTxt)
                                             .addComponent(alergiaTxt)
                                             .addComponent(paciente_idTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(enfLbl)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(enfTriadorCbb, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(doencasTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(enfLbl)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(enfTriadorCbb, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(217, 217, 217)
                         .addComponent(jButton1))
@@ -161,13 +173,14 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idiLbl)
-                    .addComponent(enfLbl)
-                    .addComponent(enfTriadorCbb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(paciente_idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(paciente_idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
                 .addGap(6, 6, 6)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tipoSangueTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(enfLbl)
+                    .addComponent(enfTriadorCbb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -240,6 +253,10 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tipoSangueTxtActionPerformed
 
+    private void paciente_idTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_paciente_idTxtActionPerformed
+        
+    }//GEN-LAST:event_paciente_idTxtActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField alergiaTxt;
@@ -254,6 +271,7 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField motivoTxt;
     private javax.swing.JTextField paciente_idTxt;

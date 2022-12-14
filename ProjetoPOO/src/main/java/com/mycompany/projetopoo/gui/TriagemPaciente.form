@@ -82,18 +82,23 @@
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
+                                      <Component id="doencasTxt" alignment="0" min="-2" pref="135" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                               <Component id="tipoSangueTxt" alignment="1" max="32767" attributes="0"/>
                                               <Component id="alergiaTxt" alignment="1" max="32767" attributes="0"/>
                                               <Component id="paciente_idTxt" pref="135" max="32767" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="enfLbl" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="enfTriadorCbb" min="-2" pref="135" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="enfLbl" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="enfTriadorCbb" min="-2" pref="135" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="jLabel7" min="-2" pref="219" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <Component id="doencasTxt" min="-2" pref="135" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -116,14 +121,15 @@
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="idiLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="enfLbl" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="enfTriadorCbb" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="paciente_idTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="tipoSangueTxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="enfLbl" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="enfTriadorCbb" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -169,7 +175,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="idiLbl">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ID do paciente:"/>
+            <Property name="text" type="java.lang.String" value="ID do atendimento:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="enfLbl">
@@ -246,6 +252,14 @@
         <Component class="javax.swing.JTextField" name="prioridadeTxt">
         </Component>
         <Component class="javax.swing.JTextField" name="paciente_idTxt">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="paciente_idTxtActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel7">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Nome do paciente:"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
