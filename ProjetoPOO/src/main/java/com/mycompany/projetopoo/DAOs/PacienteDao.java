@@ -16,19 +16,15 @@ import java.util.logging.Logger;
  * Classe PacienteDao
  *
  * CREATE TABLE `paciente` (
- *  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
- *  `title` varchar(100) NOT NULL,
- *  `year` smallint(6) NOT NULL,
- *  `rate` char(3) NOT NULL,
- *  `genre_id` bigint(20) unsigned NOT NULL,
- *  PRIMARY KEY (`id`),
- *  UNIQUE KEY `id` (`id`),
- *  KEY `genre_id` (`genre_id`),
- *  CONSTRAINT `movie_ibfk_1` FOREIGN KEY (`genre_id`) REFERENCES `genre` (`id`)
- * ) ENGINE=InnoDB;
+ * `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+ * `nome` varchar(45) NOT NULL,
+ * `cpf` varchar(11) NOT NULL,
+ * PRIMARY KEY (`id`),
+ * UNIQUE KEY `id` (`id`)
+ *) ENGINE=InnoDB DEFAULT CHARSET=latin1 
  *
- * @author Nós;
- * @version 0.1, 2022-12-02
+ * @author Suellen, Lorena, Emerson;
+ * @version 0.1, 2022-12-14
  */
 public class PacienteDao
         extends Dao<Paciente> {
