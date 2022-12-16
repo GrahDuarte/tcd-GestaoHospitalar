@@ -17,13 +17,23 @@ public class Paciente extends Pessoa{
     public Paciente(String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereco, Long id) {
         super(nome, cpf, dataNascimento, telefone, email, endereco, id);
     }
-    
+
+    @Override
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    @Override
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
     
     public void getDataNascimento(String text) {
         this.setDataNascimento(LocalDate.MIN.now());
     }
 
-    private void setDataNascimento(LocalDate now) {
+    @Override
+    public void setDataNascimento(LocalDate now) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

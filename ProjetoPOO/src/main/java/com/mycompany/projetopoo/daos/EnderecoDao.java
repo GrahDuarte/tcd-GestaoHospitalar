@@ -5,7 +5,6 @@
 package com.mycompany.projetopoo.daos;
 
 import com.mycompany.projetopoo.dados.Endereco;
-import com.mycompany.projetopoo.pessoas.Paciente;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

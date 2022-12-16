@@ -4,11 +4,13 @@
  */
 package com.mycompany.projetopoo.dados;
 
+import com.mycompany.projetopoo.pessoas.Entity;
+
 /**
  *
  * @author suKarolainy
  */
-public class Endereco {
+public class Endereco extends Entity{
     private String bairro;
     private String logradouro;
     private Integer numero;
@@ -18,7 +20,8 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Endereco(String bairro, String logradouro, Integer numero, String complemento) {
+    public Endereco(Long id, String bairro, String logradouro, Integer numero, String complemento) {
+        super(id);
         this.bairro = bairro;
         this.logradouro = logradouro;
         this.numero = numero;

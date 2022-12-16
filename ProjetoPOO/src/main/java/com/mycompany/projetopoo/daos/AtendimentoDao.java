@@ -4,10 +4,140 @@
  */
 package com.mycompany.projetopoo.daos;
 
+import com.mycompany.projetopoo.atendimento.Atendimento;
+import com.mycompany.projetopoo.atendimento.Triagem;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author suKarolainy
  */
-public class AtendimentoDao {
+public class AtendimentoDao extends Dao<Atendimento> {
+    public static final String TABLE = "atendimento";
+
+    @Override
+    public String getSaveStatment() {
+        return "insert into " + TABLE
+                + " (horarioAtendimento, triagem, consulta, paciente)"
+                + " values (?, ?, ?, ?)";
+    }
+
+    @Override
+    public String getUpdateStatment() {
+        return "update " + TABLE
+                + " set horarioAtendimento =?, triagem = ?, consulta = ?, paciente = ?"
+                + " where id = ?";
+    }
+
+    @Override
+    public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Atendimento e) {
+        try {
+            pstmt.setInt(1, e.getHorarioAtendimento());
+            pstmt.setString(2, e.getTriagem());
+            pstmt.setString(3, e.getConsulta());
+            pstmt.setString(4, e.getPaciente());
+
+            if (e.getId() != null && e.getId() > 0) {
+                pstmt.setLong(5, e.getId());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AtendimentoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public String getFindByIdStatment() {
+        return "select horarioAtendimento =?, triagem = ?, consulta = ?, paciente = ?"
+                + " from " + TABLE
+                + " where id = ?";
+    }
+
+    @Override
+    public String getFindAllStatment() {
+        return "select horarioAtendimento =?, triagem = ?, consulta = ?, paciente = ?"
+                + " from " + TABLE;
+    }
+
+    /**
+     * SQL statement to use to find movies by genre
+     *
+     * @return SQL statement
+     */
     
+    private String getfindAllByPartialNameStatment() {
+        return " select horarioAtendimento =?, triagem = ?, consulta = ?, paciente = ?"
+                + " from " + TABLE
+                + " where nome like ?";
+    }
+    
+    public List<Atendimento> findAllByPartialName(String partialName) {
+
+        try ( PreparedStatement preparedStatement
+                = DbConnection.getConnection().prepareStatement(
+                        getfindAllByPartialNameStatment())) {
+
+            preparedStatement.setString(1, "%" + partialName + "%");
+
+            // Show the full sentence
+            System.out.println(">> SQL: " + preparedStatement);
+
+            // Performs the query on the database
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Returns the respective object
+            return extractObjects(resultSet);
+
+        } catch (Exception ex) {
+            System.out.println("Exception: " + ex);
+        }
+
+        return null;
+    }
+
+    @Override
+    public String getMoveToTrashStatement() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String getRestoreFromTrashStatement() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public String getFindAllOnTrashStatement() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    /**
+     * Extracts the movie from the result set with the associated genre
+     *
+     * @param resultSet The record in the database
+     * @return The movie located
+     */
+    @Override
+    public Atendimento extractObject(ResultSet resultSet) {
+        if (resultSet != null) {
+            try {
+                return new Atendimento (
+                        resultSet.getDate("horarioAtendimento"), //converter LocalDateTime para String ?????
+                        resultSet.getString("triagem"),
+                        resultSet.getString("consulta"),
+                        resultSet.getString("paciente")
+                        );
+            } catch (SQLException ex) {
+                Logger.getLogger(AtendimentoDao.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        return null;
+    }
+
 }
+

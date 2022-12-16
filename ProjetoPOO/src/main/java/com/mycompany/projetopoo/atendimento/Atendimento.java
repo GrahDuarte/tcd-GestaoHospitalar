@@ -18,10 +18,6 @@ public class Atendimento extends Entity{
     private Consulta consulta;
     private Paciente paciente;
 
-    public Atendimento(Long id) {
-        super(id);
-    }
-    
  //atend tem chave estrangeira de paciente, triagem e consulta
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Atendimento() {
@@ -33,6 +29,16 @@ public class Atendimento extends Entity{
         this.consulta = consulta;
         this.paciente = paciente;
     }
+
+    
+    public Atendimento(LocalDateTime horarioAtendimento, Triagem triagem, Consulta consulta, Paciente paciente, Long id){
+        super(id);
+        this.horarioAtendimento = horarioAtendimento;
+        this.triagem = triagem;
+        this.consulta = consulta;
+        this.paciente = paciente;
+    }
+    
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">

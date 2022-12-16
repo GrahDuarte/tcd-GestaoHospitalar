@@ -4,7 +4,9 @@
  */
 package com.mycompany.projetopoo.pessoas;
 
+import com.mycompany.projetopoo.dados.Endereco;
 import com.mycompany.projetopoo.dados.Pessoa;
+import java.time.LocalDate;
 
 /**
  *
@@ -22,9 +24,11 @@ public class Medico extends Pessoa{
         this.crm = crm;
         this.especialidade = especialidade;
     }
-    //</editor-fold>
     
-    
+    public Medico(String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereco, Long id) {
+        super(nome, cpf, dataNascimento, telefone, email, endereco, id);
+    }
+    //</editor-fold>  
     
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
     public String getCrm() {
