@@ -38,7 +38,7 @@ public class PacienteDao
     public String getSaveStatment() {
         return "insert into " + TABLE
                 + " (nome, cpf, dataNascimento, telefone, email)"
-                + " values (?, ?)";
+                + " values (?, ?, ?, ?, ?)";
     }
 
     @Override
