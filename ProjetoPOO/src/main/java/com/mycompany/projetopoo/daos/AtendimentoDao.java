@@ -5,6 +5,7 @@
 package com.mycompany.projetopoo.daos;
 
 import com.mycompany.projetopoo.atendimento.Atendimento;
+import com.mycompany.projetopoo.atendimento.Consulta;
 import com.mycompany.projetopoo.atendimento.Triagem;
 
 import java.sql.PreparedStatement;
@@ -38,10 +39,10 @@ public class AtendimentoDao extends Dao<Atendimento> {
     @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Atendimento e) {
         try {
-            pstmt.setInt(1, e.getHorarioAtendimento());
-            pstmt.setString(2, e.getTriagem());
-            pstmt.setString(3, e.getConsulta());
-            pstmt.setString(4, e.getPaciente());
+            pstmt.setDate(1, e.getHorarioAtendimento());
+            pstmt.setLong(2, e.getTriagem().getId());
+            pstmt.setLong(3, e.getConsulta().getId());
+            pstmt.setLong(4, e.getPaciente().getId());
 
             if (e.getId() != null && e.getId() > 0) {
                 pstmt.setLong(5, e.getId());
@@ -123,14 +124,19 @@ public class AtendimentoDao extends Dao<Atendimento> {
      */
     @Override
     public Atendimento extractObject(ResultSet resultSet) {
+        Atendimento objeto = new Atendimento();
         if (resultSet != null) {
             try {
-                return new Atendimento (
-                        resultSet.getDate("horarioAtendimento"), //converter LocalDateTime para String ?????
-                        resultSet.getString("triagem"),
-                        resultSet.getString("consulta"),
-                        resultSet.getString("paciente")
-                        );
+                objeto.setId(resultSet.getLong("id"));
+                objeto.setHorarioAtendimento(resultSet.getDate("horarioAtendimento"));
+                objeto.setConsulta((new ConsultaDao().findById(resultSet.getLong("consulta"))));
+                objeto.setPaciente((new PacienteDao().findById(resultSet.getLong("paciente"))));
+//                return new Atendimento (
+////                        resultSet.getDate("horarioAtendimento"), //converter LocalDateTime para String ?????
+//                        resultSet.getString("triagem"),
+//                        resultSet.getString("consulta"),
+//                        resultSet.getString("paciente")
+//                        );
             } catch (SQLException ex) {
                 Logger.getLogger(AtendimentoDao.class.getName()).log(Level.SEVERE, null, ex);
             }

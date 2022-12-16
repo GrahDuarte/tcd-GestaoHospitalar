@@ -246,7 +246,10 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
             new PacienteDao().saveOrUpdate(
                     new Paciente(null,
                             nomeTxt.getText(),
-                            cpfTxt.getText())
+                            cpfTxt.getText(),
+                            nascimentoTxt.getText(),
+                            celularTxt.getText(),
+                            emailTxt.getText())
             );
         } catch (Exception ex) {
             Logger.getLogger(CadastroPaciente.class.getName()).log(Level.SEVERE, null, ex);
@@ -256,6 +259,9 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
         nomeTxt.setText(null);
         nomeTxt.requestFocus();
         cpfTxt.setText(null);
+        nascimentoTxt.setText(null);
+        celularTxt.setText(null);
+        emailTxt.setText(null);
   
     }//GEN-LAST:event_saveBtnActionPerformed
 

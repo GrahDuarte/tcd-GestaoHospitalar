@@ -4,6 +4,7 @@
  */
 package com.mycompany.projetopoo.atendimento;
 
+import com.mycompany.projetopoo.pessoas.Entity;
 import com.mycompany.projetopoo.pessoas.Medico;
 import java.time.LocalDateTime;
 
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
  *
  * @author suKarolainy
  */
-public class Consulta {
+public class Consulta extends Entity{
     private LocalDateTime entrada;
     private LocalDateTime alta;
     private Medico medicoResponsavel;
@@ -25,6 +26,10 @@ public class Consulta {
         this.alta = alta;
         this.medicoResponsavel = medicoResponsavel;
         this.examesRealizados = examesRealizados;
+    }
+
+    public Consulta(Long id) {
+        super(id);
     }
 
     public LocalDateTime getEntrada() {
