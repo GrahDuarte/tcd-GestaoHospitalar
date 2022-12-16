@@ -40,7 +40,7 @@ public class MedicoDao extends Dao<Medico> {
             pstmt.setString(2, e.getEspecialidade());
             pstmt.setString(3, e.getNome());
             pstmt.setString(4, e.getCpf());
-//            pstmt.setString(4, e.getDataNascimento()); // converter LocalDate para String ???
+            pstmt.setLong(3, e.getDataNascimento().getId());
             pstmt.setString(6, e.getTelefone());
             pstmt.setString(7, e.getEmail());
 
@@ -124,24 +124,27 @@ public class MedicoDao extends Dao<Medico> {
      */
     @Override
     public Medico extractObject(ResultSet resultSet) {
+        Medico objeto = new Medico();
         if (resultSet != null) {
             try {
-                return new Medico (
-                        resultSet.getLong("id"),
-                        resultSet.getString("crm"),
-                        resultSet.getString("especialidade"),
-                        resultSet.getString("nome"),
-                        resultSet.getString("cpf"),
-//                        resultSet.getDate("dataNascimento"), //converter LocalDate para String ??
-                        resultSet.getString("telefone"),
-                        resultSet.getString("email")
-                );
+                objeto.setId(resultSet.getLong("id"));
+                objeto.setCrm(resultSet.getString("crm"));
+                objeto.setEspecialidade(resultSet.getString("especialidade"));
+                objeto.setNome(resultSet.getString("nome"));
+                objeto.setCpf(resultSet.getString("cpf"));
+                objeto.setDataNascimento((new DataDao().findById(resultSet.getLong("dataNascimento"))));
+                objeto.setTelefone(resultSet.getString("telefone"));
+                objeto.setEmail(resultSet.getString("email"));
             } catch (SQLException ex) {
                 Logger.getLogger(MedicoDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
         return null;
+    }
+
+    Medico localizarPorId(long aLong) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

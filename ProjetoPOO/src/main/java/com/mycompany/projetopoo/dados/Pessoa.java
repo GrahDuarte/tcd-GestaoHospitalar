@@ -5,7 +5,6 @@
 package com.mycompany.projetopoo.dados;
 
 import com.mycompany.projetopoo.pessoas.Entity;
-import java.time.LocalDate;
 
 /**
  *
@@ -14,7 +13,7 @@ import java.time.LocalDate;
 public class Pessoa extends Entity{
     private String nome;
     private String cpf;
-    private LocalDate dataNascimento;
+    private Data dataNascimento;
     private String telefone;
     private String email;
     public Endereco endereco;
@@ -23,7 +22,7 @@ public class Pessoa extends Entity{
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereco, Long id) {
+    public Pessoa(String nome, String cpf, Data dataNascimento, String telefone, String email, Endereco endereco, Long id) {
         super(id);
         this.nome = nome;
         this.cpf = cpf;
@@ -32,6 +31,7 @@ public class Pessoa extends Entity{
         this.email = email;
         this.endereco = endereco;
     }
+
 
     public String getNome() {
         return nome;
@@ -49,11 +49,11 @@ public class Pessoa extends Entity{
         this.cpf = cpf;
     }
 
-    public LocalDate getDataNascimento() {
+    public Data getDataNascimento() {
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento) {
+    public void setDataNascimento(Data dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 

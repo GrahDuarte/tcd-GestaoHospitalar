@@ -45,7 +45,7 @@ public class TriagemDao extends Dao<Triagem> {
             pstmt.setString(7, e.getPrioridadeAtendimento());
 
             if (e.getId() != null && e.getId() > 0) {
-                pstmt.setLong(3, e.getId());
+                pstmt.setLong(8, e.getId());
             }
         } catch (SQLException ex) {
             Logger.getLogger(TriagemDao.class.getName()).log(Level.SEVERE, null, ex);

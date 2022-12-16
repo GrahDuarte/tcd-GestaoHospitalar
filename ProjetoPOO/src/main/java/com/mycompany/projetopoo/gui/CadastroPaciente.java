@@ -9,6 +9,7 @@ import com.mycompany.projetopoo.daos.PacienteDao;
 import com.mycompany.projetopoo.dados.Endereco;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;

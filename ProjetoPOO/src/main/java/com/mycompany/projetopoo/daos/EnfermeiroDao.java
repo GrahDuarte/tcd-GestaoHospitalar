@@ -39,7 +39,7 @@ public class EnfermeiroDao extends Dao<Enfermeiro> {
             pstmt.setString(1, e.getCoren());
             pstmt.setString(2, e.getNome());
             pstmt.setString(3, e.getCpf());
-//            pstmt.setString(4, e.getDataNascimento()); // converter LocalDate para String ???
+            pstmt.setLong(3, e.getDataNascimento().getId());
             pstmt.setString(5, e.getTelefone());
             pstmt.setString(6, e.getEmail());
 
@@ -123,17 +123,25 @@ public class EnfermeiroDao extends Dao<Enfermeiro> {
      */
     @Override
     public Enfermeiro extractObject(ResultSet resultSet) {
+        Enfermeiro objeto = new Enfermeiro();
         if (resultSet != null) {
             try {
-                return new Enfermeiro (
-                        resultSet.getLong("id"),
-                        resultSet.getString("coren"),
-                        resultSet.getString("nome"),
-                        resultSet.getString("cpf"),
-//                        resultSet.getDate("dataNascimento"), //converter LocalDate para String ??
-                        resultSet.getString("telefone"),
-                        resultSet.getString("email")
-                );
+                objeto.setId(resultSet.getLong("id"));
+                objeto.setCoren(resultSet.getString("coren"));
+                objeto.setNome(resultSet.getString("nome"));
+                objeto.setCpf(resultSet.getString("cpf"));
+                objeto.setDataNascimento((new DataDao().findById(resultSet.getLong("dataNascimento"))));
+                objeto.setTelefone(resultSet.getString("telefone"));
+                objeto.setEmail(resultSet.getString("email"));
+//                return new Enfermeiro (
+//                        resultSet.getLong("id"),
+//                        resultSet.getString("coren"),
+//                        resultSet.getString("nome"),
+//                        resultSet.getString("cpf"),
+//                        resultSet.getInt("dataNascimento"), //converter LocalDate para String ??
+//                        resultSet.getString("telefone"),
+//                        resultSet.getString("email")
+//                );
             } catch (SQLException ex) {
                 Logger.getLogger(PacienteDao.class.getName()).log(Level.SEVERE, null, ex);
             }

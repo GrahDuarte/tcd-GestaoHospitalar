@@ -4,9 +4,9 @@
  */
 package com.mycompany.projetopoo.pessoas;
 
+import com.mycompany.projetopoo.dados.Data;
 import com.mycompany.projetopoo.dados.Endereco;
 import com.mycompany.projetopoo.dados.Pessoa;
-import java.time.LocalDate;
 
 /**
  *
@@ -23,9 +23,10 @@ public class Enfermeiro extends Pessoa{
         this.coren = coren;
     }
 
-    public Enfermeiro(String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereco, Long id) {
+    public Enfermeiro(String coren, String nome, String cpf, Data dataNascimento, String telefone, String email, Endereco endereco, Long id) {
         super(nome, cpf, dataNascimento, telefone, email, endereco, id);
     }
+    
     
     
     //</editor-fold>

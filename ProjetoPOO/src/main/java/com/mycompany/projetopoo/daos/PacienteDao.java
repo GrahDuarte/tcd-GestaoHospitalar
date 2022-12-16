@@ -39,7 +39,7 @@ public class PacienteDao
         try {
             pstmt.setString(1, e.getNome());
             pstmt.setString(2, e.getCpf());
-//            pstmt.setString(3, e.getDataNascimento()); // converter LocalDate para String ???
+            pstmt.setLong(3, e.getDataNascimento().getId());
             pstmt.setString(4, e.getTelefone());
             pstmt.setString(5, e.getEmail());
 
@@ -123,16 +123,23 @@ public class PacienteDao
      */
     @Override
     public Paciente extractObject(ResultSet resultSet) {
+        Paciente objeto = new Paciente();
         if (resultSet != null) {
             try {
-                return new Paciente (
-                        resultSet.getLong("id"),
-                        resultSet.getString("nome"),
-                        resultSet.getString("cpf"),
-//                        resultSet.getDate("dataNascimento"), //converter LocalDate para String ??
-                        resultSet.getString("telefone"),
-                        resultSet.getString("email")
-                );
+                objeto.setId(resultSet.getLong("id"));
+                objeto.setNome(resultSet.getString("nome"));
+                objeto.setCpf(resultSet.getString("cpf"));
+                objeto.setDataNascimento((new DataDao().findById(resultSet.getLong("dataNascimento"))));
+                objeto.setTelefone(resultSet.getString("telefone"));
+                objeto.setEmail(resultSet.getString("email"));
+//                return new Paciente (
+//                        resultSet.getLong("id"),
+//                        resultSet.getString("nome"),
+//                        resultSet.getString("cpf"),
+//                        resultSet.getLong("dataNascimento"),
+//                        resultSet.getString("telefone"),
+//                        resultSet.getString("email")
+//                );
             } catch (SQLException ex) {
                 Logger.getLogger(PacienteDao.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -4,9 +4,9 @@
  */
 package com.mycompany.projetopoo.pessoas;
 
+import com.mycompany.projetopoo.dados.Data;
 import com.mycompany.projetopoo.dados.Endereco;
 import com.mycompany.projetopoo.dados.Pessoa;
-import java.time.LocalDate;
 
 /**
  *
@@ -14,7 +14,10 @@ import java.time.LocalDate;
  */
 public class Paciente extends Pessoa{
 
-    public Paciente(String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereco, Long id) {
+    public Paciente() {
+    }
+    
+    public Paciente(String nome, String cpf, Data dataNascimento, String telefone, String email, Endereco endereco, Long id) {
         super(nome, cpf, dataNascimento, telefone, email, endereco, id);
     }
 
@@ -27,15 +30,5 @@ public class Paciente extends Pessoa{
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    
-    public void getDataNascimento(String text) {
-        this.setDataNascimento(LocalDate.MIN.now());
-    }
-
-    @Override
-    public void setDataNascimento(LocalDate now) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     
 }
