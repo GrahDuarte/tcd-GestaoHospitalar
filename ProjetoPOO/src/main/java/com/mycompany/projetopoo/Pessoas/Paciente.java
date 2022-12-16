@@ -4,6 +4,7 @@
  */
 package com.mycompany.projetopoo.Pessoas;
 
+import com.mycompany.projetopoo.Dados.Endereco;
 import com.mycompany.projetopoo.Dados.Pessoa;
 import java.time.LocalDate;
 
@@ -22,9 +23,8 @@ public class Paciente extends Pessoa {
     public Paciente() {
     }
 
-    public Paciente(Long id, String nome, String cpf) {
-        super(id, nome, cpf);
+    public Paciente(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereco) {
+        super(id, nome, cpf, dataNascimento, telefone, email, endereco);
     }
- 
-    
+    //</editor-fold>
 }

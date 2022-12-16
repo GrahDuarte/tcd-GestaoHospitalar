@@ -9,6 +9,7 @@ import com.mycompany.projetopoo.DAOs.PacienteDao;
 import com.mycompany.projetopoo.Dados.Endereco;
 import java.sql.PreparedStatement;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -77,6 +78,12 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
         jLabel1.setText("Ficha de cadastro de pacientes");
 
         nomeLbl.setText("Nome:");
+
+        nascimentoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nascimentoTxtActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("ID:");
 
@@ -196,7 +203,6 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
                         .addComponent(celularTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5)
                         .addComponent(jLabel4)))
-                .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -225,11 +231,18 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
         //Paciente paciente = new Paciente();
         
         try {
+            String dataNascimento = nascimentoTxt.getText();
+            LocalDate ld = LocalDate.parse(dataNascimento, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            String dia = String.valueOf(ld.minusDays(1));
+            nascimentoTxt.setText(dia);
             new PacienteDao().saveOrUpdate(
                     new Paciente(null,
                             nomeTxt.getText(),
-                            cpfTxt.getText())
-            );
+                            cpfTxt.getText(),
+//                            numeroTxt.getText(), //converter LocalDate para String ???
+                            celularTxt.getText(),
+                            emailTxt.getText())
+                            );
         } catch (Exception ex) {
             Logger.getLogger(CadastroPaciente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Record not saved.\nCheck the data or the network connection and try again.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -240,6 +253,10 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
         cpfTxt.setText(null);
   
     }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void nascimentoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nascimentoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nascimentoTxtActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

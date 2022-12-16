@@ -8,9 +8,12 @@ import com.mycompany.projetopoo.Pessoas.Paciente;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
 
 /**
  * Classe PacienteDao
@@ -34,14 +37,14 @@ public class PacienteDao
     @Override
     public String getSaveStatment() {
         return "insert into " + TABLE
-                + " (nome, cpf)"
+                + " (nome, cpf, dataNascimento, telefone, email)"
                 + " values (?, ?)";
     }
 
     @Override
     public String getUpdateStatment() {
         return "update " + TABLE
-                + " set nome = ?, cpf = ?"
+                + " set nome = ?, cpf = ?, dataNascimento = ?, telefone = ?, email = ?"
                 + " where id = ?";
     }
 
@@ -50,9 +53,12 @@ public class PacienteDao
         try {
             pstmt.setString(1, e.getNome());
             pstmt.setString(2, e.getCpf());
+//            pstmt.setString(3, e.getDataNascimento()); // converter LocalDate para String ???
+            pstmt.setString(4, e.getTelefone());
+            pstmt.setString(5, e.getEmail());
 
             if (e.getId() != null && e.getId() > 0) {
-                pstmt.setLong(3, e.getId());
+                pstmt.setLong(6, e.getId());
             }
         } catch (SQLException ex) {
             Logger.getLogger(PacienteDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -61,14 +67,14 @@ public class PacienteDao
 
     @Override
     public String getFindByIdStatment() {
-        return "select id, nome, cpf"
+        return "select id, nome, cpf, dataNascimento, telefone, email"
                 + " from " + TABLE
                 + " where id = ?";
     }
 
     @Override
     public String getFindAllStatment() {
-        return "select id, nome, cpf"
+        return "select id, nome, cpf, dataNascimento, telefone, email"
                 + " from " + TABLE;
     }
 
@@ -79,7 +85,7 @@ public class PacienteDao
      */
     
     private String getfindAllByPartialNameStatment() {
-        return " select id, nome, cpf"
+        return " select id, nome, cpf, dataNascimento, telefone, email"
                 + " from " + TABLE
                 + " where nome like ?";
     }
@@ -136,7 +142,10 @@ public class PacienteDao
                 return new Paciente (
                         resultSet.getLong("id"),
                         resultSet.getString("nome"),
-                        resultSet.getString("cpf")
+                        resultSet.getString("cpf"),
+//                        resultSet.getDate("dataNascimento"), //converter LocalDate para String ??
+                        resultSet.getString("telefone"),
+                        resultSet.getString("email")
                 );
             } catch (SQLException ex) {
                 Logger.getLogger(PacienteDao.class.getName()).log(Level.SEVERE, null, ex);

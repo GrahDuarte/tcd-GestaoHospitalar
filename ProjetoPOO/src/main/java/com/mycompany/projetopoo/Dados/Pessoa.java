@@ -2,6 +2,7 @@ package com.mycompany.projetopoo.Dados;
 import com.mycompany.projetopoo.Pessoas.Entity;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -18,15 +19,9 @@ public class Pessoa extends Entity {
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Pessoa() {
     }
-
-    public Pessoa(Long id, String nome, String cpf) {
-        super(id);
-        this.nome = nome;
-        this.cpf = cpf;
-    }
-
     
-    public Pessoa(String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereco) {
+    public Pessoa(Long id, String nome, String cpf, LocalDate dataNascimento, String telefone, String email, Endereco endereco) {
+        super(id);
         this.nome = nome;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
