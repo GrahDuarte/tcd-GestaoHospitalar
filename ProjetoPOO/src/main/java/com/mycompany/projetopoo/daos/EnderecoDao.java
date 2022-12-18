@@ -36,15 +36,15 @@ public class EnderecoDao extends Dao<Endereco>{
     @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Endereco e) {
         try {
-            pstmt.setLong(1, e.getId());
+            pstmt.setLong(1, e.getIdPessoa());
             pstmt.setString(2, e.getBairro());
             pstmt.setString(3, e.getLogradouro());
             pstmt.setInt(4, e.getNumero());
             pstmt.setString(5, e.getComplemento());
 
-            if (e.getId() != null && e.getId() > 0) {
-                pstmt.setLong(6, e.getId());
-            }
+//            if (e.getId() != null && e.getId() > 0) {
+//                pstmt.setLong(6, e.getId());
+//            }
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDao.class.getName()).log(Level.SEVERE, null, ex);
         }

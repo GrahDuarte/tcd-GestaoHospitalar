@@ -4,13 +4,12 @@
  */
 package com.mycompany.projetopoo.dados;
 
-import com.mycompany.projetopoo.pessoas.Entity;
-
 /**
  *
  * @author suKarolainy
  */
-public class Endereco extends Entity{
+public class Endereco{
+    private Long idPessoa;
     private String bairro;
     private String logradouro;
     private Integer numero;
@@ -20,14 +19,21 @@ public class Endereco extends Entity{
     public Endereco() {
     }
 
-    public Endereco(Long id, String bairro, String logradouro, Integer numero, String complemento) {
-        super(id);
+    public Endereco(Long idPessoa, String bairro, String logradouro, Integer numero, String complemento) {
+        this.idPessoa = idPessoa;
         this.bairro = bairro;
         this.logradouro = logradouro;
         this.numero = numero;
         this.complemento = complemento;
     }
 
+    public Long getIdPessoa() {
+        return idPessoa;
+    }
+
+    public void setIdPessoa(Long idPessoa) {
+        this.idPessoa = idPessoa;
+    }
     
     public String getBairro() {
         return bairro;

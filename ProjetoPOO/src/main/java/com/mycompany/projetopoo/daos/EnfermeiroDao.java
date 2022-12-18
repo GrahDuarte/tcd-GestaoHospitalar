@@ -39,9 +39,8 @@ public class EnfermeiroDao extends Dao<Enfermeiro> {
             pstmt.setString(1, e.getCoren());
             pstmt.setString(2, e.getNome());
             pstmt.setString(3, e.getCpf());
-            pstmt.setLong(3, e.getDataNascimento().getId());
+            pstmt.setString(3, e.getDataNascimento());
             pstmt.setString(5, e.getTelefone());
-            pstmt.setString(6, e.getEmail());
 
             if (e.getId() != null && e.getId() > 0) {
                 pstmt.setLong(7, e.getId());
@@ -53,14 +52,14 @@ public class EnfermeiroDao extends Dao<Enfermeiro> {
 
     @Override
     public String getFindByIdStatment() {
-        return "select id, coren, nome, cpf, dataNascimento, telefone, email"
+        return "select id, coren, nome, cpf, dataNascimento, telefone"
                 + " from " + TABLE
                 + " where id = ?";
     }
 
     @Override
     public String getFindAllStatment() {
-        return "select id, coren, nome, cpf, dataNascimento, telefone, email"
+        return "select id, coren, nome, cpf, dataNascimento, telefone"
                 + " from " + TABLE;
     }
 
@@ -71,7 +70,7 @@ public class EnfermeiroDao extends Dao<Enfermeiro> {
      */
     
     private String getfindAllByPartialNameStatment() {
-        return " select id, coren, nome, cpf, dataNascimento, telefone, email"
+        return " select id, coren, nome, cpf, dataNascimento, telefone"
                 + " from " + TABLE
                 + " where nome like ?";
     }
@@ -130,9 +129,8 @@ public class EnfermeiroDao extends Dao<Enfermeiro> {
                 objeto.setCoren(resultSet.getString("coren"));
                 objeto.setNome(resultSet.getString("nome"));
                 objeto.setCpf(resultSet.getString("cpf"));
-                objeto.setDataNascimento((new DataDao().findById(resultSet.getLong("dataNascimento"))));
+                objeto.setDataNascimento(resultSet.getString("dataNascimento"));
                 objeto.setTelefone(resultSet.getString("telefone"));
-                objeto.setEmail(resultSet.getString("email"));
 //                return new Enfermeiro (
 //                        resultSet.getLong("id"),
 //                        resultSet.getString("coren"),
@@ -143,7 +141,7 @@ public class EnfermeiroDao extends Dao<Enfermeiro> {
 //                        resultSet.getString("email")
 //                );
             } catch (SQLException ex) {
-                Logger.getLogger(PacienteDao.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EnfermeiroDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 

@@ -4,7 +4,6 @@
  */
 package com.mycompany.projetopoo.pessoas;
 
-import com.mycompany.projetopoo.dados.Data;
 import com.mycompany.projetopoo.dados.Endereco;
 import com.mycompany.projetopoo.dados.Pessoa;
 
@@ -23,8 +22,8 @@ public class Enfermeiro extends Pessoa{
         this.coren = coren;
     }
 
-    public Enfermeiro(String coren, String nome, String cpf, Data dataNascimento, String telefone, String email, Endereco endereco, Long id) {
-        super(nome, cpf, dataNascimento, telefone, email, endereco, id);
+    public Enfermeiro(String coren, String nome, String cpf, String dataNascimento, String telefone, Endereco endereco, Long id) {
+        super(nome, cpf, dataNascimento, telefone, endereco, id);
     }
     
     

@@ -38,12 +38,28 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuAtendActionPerformed"/>
           </Events>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="mnuAtendCadastrar">
+            <MenuItem class="javax.swing.JMenuItem" name="mnuAtendCadastrarPaciente">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cadastrar paciente"/>
+                <Property name="text" type="java.lang.String" value="Cadastrar Paciente"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuAtendCadastrarActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuAtendCadastrarPacienteActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuAtendCadastrarMedico">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cadastrar M&#xe9;dico"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuAtendCadastrarMedicoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="mnuAtendCadastrarEnfermeiro">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Cadastrar Enfermeiro"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuAtendCadastrarEnfermeiroActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="mnuAtendTriagem">

@@ -6,6 +6,7 @@ package com.mycompany.projetopoo.atendimento;
 
 import com.mycompany.projetopoo.pessoas.Entity;
 import com.mycompany.projetopoo.pessoas.Paciente;
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 /**
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
  * @author suKarolainy
  */
 public class Atendimento extends Entity{
-    private LocalDateTime horarioAtendimento;
+    private Date horarioAtendimento;
     private Triagem triagem;
     private Consulta consulta;
     private Paciente paciente;
@@ -23,7 +24,7 @@ public class Atendimento extends Entity{
     public Atendimento() {
     }
 
-    public Atendimento(LocalDateTime horarioAtendimento, Triagem triagem, Consulta consulta, Paciente paciente) {
+    public Atendimento(Date horarioAtendimento, Triagem triagem, Consulta consulta, Paciente paciente) {
         this.horarioAtendimento = horarioAtendimento;
         this.triagem = triagem;
         this.consulta = consulta;
@@ -31,7 +32,7 @@ public class Atendimento extends Entity{
     }
 
     
-    public Atendimento(LocalDateTime horarioAtendimento, Triagem triagem, Consulta consulta, Paciente paciente, Long id){
+    public Atendimento(Date horarioAtendimento, Triagem triagem, Consulta consulta, Paciente paciente, Long id){
         super(id);
         this.horarioAtendimento = horarioAtendimento;
         this.triagem = triagem;
@@ -42,11 +43,12 @@ public class Atendimento extends Entity{
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
-    public LocalDateTime getHorarioAtendimento() {
+    public Date getHorarioAtendimento() {
         return horarioAtendimento;
     }
 
-    public void setHorarioAtendimento(LocalDateTime horarioAtendimento) {
+    public void setHorarioAtendimento(Date horarioAtendimento) {
+        
         this.horarioAtendimento = horarioAtendimento;
     }
 

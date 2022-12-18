@@ -40,8 +40,8 @@ public class AtendimentoDao extends Dao<Atendimento> {
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Atendimento e) {
         try {
             pstmt.setDate(1, e.getHorarioAtendimento());
-            pstmt.setLong(2, e.getTriagem().getId());
-            pstmt.setLong(3, e.getConsulta().getId());
+            pstmt.setLong(2, e.getTriagem().getIdAtendimento());
+            pstmt.setLong(3, e.getConsulta().getIdAtendimento());
             pstmt.setLong(4, e.getPaciente().getId());
 
             if (e.getId() != null && e.getId() > 0) {
@@ -131,12 +131,6 @@ public class AtendimentoDao extends Dao<Atendimento> {
                 objeto.setHorarioAtendimento(resultSet.getDate("horarioAtendimento"));
                 objeto.setConsulta((new ConsultaDao().findById(resultSet.getLong("consulta"))));
                 objeto.setPaciente((new PacienteDao().findById(resultSet.getLong("paciente"))));
-//                return new Atendimento (
-////                        resultSet.getDate("horarioAtendimento"), //converter LocalDateTime para String ?????
-//                        resultSet.getString("triagem"),
-//                        resultSet.getString("consulta"),
-//                        resultSet.getString("paciente")
-//                        );
             } catch (SQLException ex) {
                 Logger.getLogger(AtendimentoDao.class.getName()).log(Level.SEVERE, null, ex);
             }

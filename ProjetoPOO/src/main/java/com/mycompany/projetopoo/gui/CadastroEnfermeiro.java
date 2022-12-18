@@ -6,8 +6,10 @@ package com.mycompany.projetopoo.gui;
 
 import com.mycompany.projetopoo.dados.Endereco;
 import com.mycompany.projetopoo.daos.EnderecoDao;
-import com.mycompany.projetopoo.pessoas.Paciente;
-import com.mycompany.projetopoo.daos.PacienteDao;
+import com.mycompany.projetopoo.daos.EnfermeiroDao;
+import com.mycompany.projetopoo.daos.MedicoDao;
+import com.mycompany.projetopoo.pessoas.Enfermeiro;
+import com.mycompany.projetopoo.pessoas.Medico;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -16,19 +18,19 @@ import javax.swing.JOptionPane;
  *
  * @author suKarolainy
  */
-public class CadastroPaciente extends javax.swing.JInternalFrame {
-    private static CadastroPaciente instance;
+public class CadastroEnfermeiro extends javax.swing.JInternalFrame {
+    private static CadastroEnfermeiro instance;
 
     /**
      * Creates new form CadastroPaciente
      */
-    private CadastroPaciente() {
+    private CadastroEnfermeiro() {
         initComponents();
     }
     
-    public static CadastroPaciente getInstance() {
+    public static CadastroEnfermeiro getInstance() {
         if(instance == null) {
-            instance = new CadastroPaciente();
+            instance = new CadastroEnfermeiro();
         }
         return instance;
     }
@@ -43,6 +45,7 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        nomeTxt1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         saveBtn = new javax.swing.JButton();
         complementoTxt = new javax.swing.JTextField();
@@ -63,6 +66,8 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
         nomeLbl = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         cpfTxt = new javax.swing.JFormattedTextField();
+        nomeLbl1 = new javax.swing.JLabel();
+        corenTxt = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -104,7 +109,7 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Ficha de cadastro de pacientes");
+        jLabel1.setText("Ficha de Cadastro de Enfermeiros");
 
         try {
             cpfTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -112,67 +117,74 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
+        nomeLbl1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        nomeLbl1.setText("Coren:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(nomeLbl)
-                                .addGap(119, 119, 119)
-                                .addComponent(nomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(complementoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(84, 84, 84)
-                                        .addComponent(logradouroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(bairroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel2)
-                                                .addGap(34, 34, 34))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(cpfLbl)
-                                                .addGap(24, 24, 24)))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(nascimentoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
-                                            .addComponent(cpfTxt)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(complementoLbl)
-                                            .addComponent(jLabel9))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(numeroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(celularTxt)))))
-                        .addContainerGap(74, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(saveBtn)
                 .addGap(232, 232, 232))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(complementoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(84, 84, 84)
+                                .addComponent(logradouroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(bairroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(34, 34, 34))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(cpfLbl)
+                                        .addGap(24, 24, 24)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(nascimentoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+                                    .addComponent(cpfTxt)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(complementoLbl)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(numeroTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(celularTxt))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nomeLbl)
+                            .addComponent(nomeLbl1)
+                            .addComponent(jLabel6))
+                        .addGap(82, 82, 82)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(corenTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nomeLbl1)
+                    .addComponent(corenTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nomeLbl)
                     .addComponent(nomeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -232,8 +244,9 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
         //Paciente paciente = new Paciente();
         try {
             int x = Integer.parseInt(numeroTxt.getText());
-            new PacienteDao().saveOrUpdate(
-                    new Paciente(
+            new EnfermeiroDao().saveOrUpdate(
+                    new Enfermeiro(
+                            corenTxt.getText(),
                             nomeTxt.getText(),
                             cpfTxt.getText(),
                             nascimentoTxt.getText(),
@@ -247,7 +260,7 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
                                   x,
                                   complementoTxt.getText()));            
         } catch (Exception ex) {
-            Logger.getLogger(CadastroPaciente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastroEnfermeiro.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Record not saved.\nCheck the data or the network connection and try again.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
@@ -265,6 +278,7 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField celularTxt;
     private javax.swing.JLabel complementoLbl;
     private javax.swing.JTextField complementoTxt;
+    private javax.swing.JTextField corenTxt;
     private javax.swing.JLabel cpfLbl;
     private javax.swing.JFormattedTextField cpfTxt;
     private javax.swing.JLabel jLabel1;
@@ -278,7 +292,9 @@ public class CadastroPaciente extends javax.swing.JInternalFrame {
     private javax.swing.JTextField logradouroTxt;
     private javax.swing.JTextField nascimentoTxt;
     private javax.swing.JLabel nomeLbl;
+    private javax.swing.JLabel nomeLbl1;
     private javax.swing.JTextField nomeTxt;
+    private javax.swing.JTextField nomeTxt1;
     private javax.swing.JTextField numeroTxt;
     private javax.swing.JButton saveBtn;
     // End of variables declaration//GEN-END:variables

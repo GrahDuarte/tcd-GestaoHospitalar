@@ -22,14 +22,14 @@ public class MedicoDao extends Dao<Medico> {
     @Override
     public String getSaveStatment() {
         return "insert into " + TABLE
-                + " (crm, especialidade, nome, cpf, dataNascimento, telefone, email)"
+                + " (crm, especialidade, nome, cpf, dataNascimento, telefone)"
                 + " values (?, ?, ?, ?, ?, ?, ?)";
     }
 
     @Override
     public String getUpdateStatment() {
         return "update " + TABLE
-                + " set crm = ?, especialidade = ?, nome = ?, cpf = ?, dataNascimento = ?, telefone = ?, email = ?"
+                + " set crm = ?, especialidade = ?, nome = ?, cpf = ?, dataNascimento = ?, telefone = ?"
                 + " where id = ?";
     }
 
@@ -37,12 +37,10 @@ public class MedicoDao extends Dao<Medico> {
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Medico e) {
         try {
             pstmt.setString(1, e.getCrm());
-            pstmt.setString(2, e.getEspecialidade());
             pstmt.setString(3, e.getNome());
             pstmt.setString(4, e.getCpf());
-            pstmt.setLong(3, e.getDataNascimento().getId());
+            pstmt.setString(3, e.getDataNascimento());
             pstmt.setString(6, e.getTelefone());
-            pstmt.setString(7, e.getEmail());
 
             if (e.getId() != null && e.getId() > 0) {
                 pstmt.setLong(8, e.getId());
@@ -54,14 +52,14 @@ public class MedicoDao extends Dao<Medico> {
 
     @Override
     public String getFindByIdStatment() {
-        return "select id, crm, especialidade, nome, cpf, dataNascimento, telefone, email"
+        return "select id, crm, especialidade, nome, cpf, dataNascimento, telefone"
                 + " from " + TABLE
                 + " where id = ?";
     }
 
     @Override
     public String getFindAllStatment() {
-        return "select id, crm, especialidade, nome, cpf, dataNascimento, telefone, email"
+        return "select id, crm, especialidade, nome, cpf, dataNascimento, telefone"
                 + " from " + TABLE;
     }
 
@@ -72,7 +70,7 @@ public class MedicoDao extends Dao<Medico> {
      */
     
     private String getfindAllByPartialNameStatment() {
-        return " select id, crm, especialidade, nome, cpf, dataNascimento, telefone, email"
+        return " select id, crm, especialidade, nome, cpf, dataNascimento, telefone"
                 + " from " + TABLE
                 + " where nome like ?";
     }
@@ -129,12 +127,10 @@ public class MedicoDao extends Dao<Medico> {
             try {
                 objeto.setId(resultSet.getLong("id"));
                 objeto.setCrm(resultSet.getString("crm"));
-                objeto.setEspecialidade(resultSet.getString("especialidade"));
                 objeto.setNome(resultSet.getString("nome"));
                 objeto.setCpf(resultSet.getString("cpf"));
-                objeto.setDataNascimento((new DataDao().findById(resultSet.getLong("dataNascimento"))));
+                objeto.setDataNascimento(resultSet.getString("dataNascimento"));
                 objeto.setTelefone(resultSet.getString("telefone"));
-                objeto.setEmail(resultSet.getString("email"));
             } catch (SQLException ex) {
                 Logger.getLogger(MedicoDao.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -11,50 +11,43 @@ import com.mycompany.projetopoo.pessoas.Entity;
  *
  * @author suKarolainy
  */
-public class Triagem extends Entity{
+public class Triagem{
     private Enfermeiro enfermeiroTriador;
-    private Integer paciente_id; 
+    private Integer idAtendimento; 
     private String tipoSanguineo;
     private String alergias;
     private String doencasCronicas;
     private String medicamentosControlados;
     private String motivoAtendimento;
     private String prioridadeAtendimento;
-    private boolean estado;
     public Triagem() {
     }
 
-    public Triagem(String tipoSanguineo, String alergias, String doencasCronicas, String medicamentosControlados, String motivoAtendimento, String prioridadeAtendimento) {
-        this.paciente_id = paciente_id;
+    public Triagem(Enfermeiro enfermeiroTriador, Integer idAtendimento, String tipoSanguineo, String alergias, String doencasCronicas, String medicamentosControlados, String motivoAtendimento, String prioridadeAtendimento) {
+        this.enfermeiroTriador = enfermeiroTriador;
+        this.idAtendimento = idAtendimento;
         this.tipoSanguineo = tipoSanguineo;
         this.alergias = alergias;
         this.doencasCronicas = doencasCronicas;
         this.medicamentosControlados = medicamentosControlados;
         this.motivoAtendimento = motivoAtendimento;
         this.prioridadeAtendimento = prioridadeAtendimento;
-        this.estado = estado;
     }
 
-    public Integer getPaciente_id() {
-        return paciente_id;
-    }
-
-    public void setPaciente_id(Integer paciente_id) {
-        this.paciente_id = paciente_id;
-    }
-
-    
-    public Triagem(Long id, boolean excluded) {
-        super(id, excluded);
-    }
-
-    
     public Enfermeiro getEnfermeiroTriador() {
         return enfermeiroTriador;
     }
 
     public void setEnfermeiroTriador(Enfermeiro enfermeiroTriador) {
         this.enfermeiroTriador = enfermeiroTriador;
+    }
+
+    public Integer getIdAtendimento() {
+        return idAtendimento;
+    }
+
+    public void setIdAtendimento(Integer idAtendimento) {
+        this.idAtendimento = idAtendimento;
     }
 
     public String getTipoSanguineo() {
@@ -105,27 +98,19 @@ public class Triagem extends Entity{
         this.prioridadeAtendimento = prioridadeAtendimento;
     }
 
-    public boolean isEstado() {
-        return estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
-
-    
-    
     @Override
     public String toString() {
         return "Triagem{" 
                 + "enfermeiroTriador=" + enfermeiroTriador 
-                + ",tipoSanguineo=" + tipoSanguineo
-                + ",alergias=" + alergias
-                + ",doencasCronicas=" + doencasCronicas
-                + ",medicamentosControlados=" + medicamentosControlados
+                + ", idAtendimento=" + idAtendimento 
+                + ", tipoSanguineo=" + tipoSanguineo 
+                + ", alergias=" + alergias 
+                + ", doencasCronicas=" + doencasCronicas 
+                + ", medicamentosControlados=" + medicamentosControlados 
                 + ", motivoAtendimento=" + motivoAtendimento 
-                + ", prioridadeAtendimento=" + prioridadeAtendimento
-                + ",estado=" + estado
+                + ", prioridadeAtendimento=" + prioridadeAtendimento 
                 + '}';
     }
+
+    
 }

@@ -22,28 +22,27 @@ public class ConsultaDao extends Dao<Consulta> {
     @Override
     public String getSaveStatment() {
         return "insert into " + TABLE
-                + " (entrada, alta, medicoResponsavel, examesRealizados)"
-                + " values (?, ?, ?, ?)";
+                + " (idAtendimento, medicoResponsavel, relatorio)"
+                + " values (?, ?, ?)";
     }
 
     @Override
     public String getUpdateStatment() {
         return "update " + TABLE
-                + " set entrada =?, alta = ?, medicoResponsavel = ?, examesRealizados = ?"
+                + " set idAtendimento =?, medicoResponsavel = ?, relatorio = ?"
                 + " where id = ?";
     }
 
     @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Consulta e) {
         try {
-            pstmt.setDate(1, e.getEntrada());
-            pstmt.setDate(2, e.getAlta()));
-            pstmt.setLong(3, e.getMedicoResponsavel().getId());
-            pstmt.setString(4, e.getExamesRealizados());
+            pstmt.setLong(1, e.getIdAtendimento());
+            pstmt.setLong(2, e.getMedicoResponsavel().getId());
+            pstmt.setString(3, e.getRelatorio());
 
-            if (e.getId() != null && e.getId() > 0) {
-                pstmt.setLong(5, e.getId());
-            }
+//            if (e.getId() != null && e.getId() > 0) {
+//                pstmt.setLong(5, e.getId());
+//            }
         } catch (SQLException ex) {
             Logger.getLogger(ConsultaDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -51,14 +50,14 @@ public class ConsultaDao extends Dao<Consulta> {
 
     @Override
     public String getFindByIdStatment() {
-        return "select entrada, alta, medicoResponsavel, examesRealizados"
+        return "select idAtendimento, medicoResponsavel, relatorio"
                 + " from " + TABLE
                 + " where id = ?";
     }
 
     @Override
     public String getFindAllStatment() {
-        return "select entrada, alta, medicoResponsavel, examesRealizados"
+        return "select idAtendimento, medicoResponsavel, relatorio"
                 + " from " + TABLE;
     }
 
@@ -69,7 +68,7 @@ public class ConsultaDao extends Dao<Consulta> {
      */
     
     private String getfindAllByPartialNameStatment() {
-        return " select entrada, alta, medicoResponsavel, examesRealizados"
+        return " select idAtendimento, medicoResponsavel, relatorio"
                 + " from " + TABLE
                 + " where nome like ?";
     }
@@ -124,11 +123,9 @@ public class ConsultaDao extends Dao<Consulta> {
         Consulta objeto = new Consulta();
         if (resultSet != null) {
             try {
-                objeto.setId(resultSet.getLong("id"));
-                objeto.setEntrada(resultSet.getDate("entrada"));
-                objeto.setAlta(resultSet.getDate("alta"));
-                objeto.setMedicoResponsavel((new MedicoDao().findById(resultSet.getLong("medicoResponsavel"))));
-                objeto.setExamesRealizados(resultSet.getString("examesRealizados"));
+                objeto.setIdAtendimento(resultSet.getLong("idAtendimento"));
+                objeto.setMedicoResponsavel(new MedicoDao().findById(resultSet.getLong("medicoResponsavel")));
+                objeto.setRelatorio(resultSet.getString("relatorio"));
                 
             } catch (SQLException ex) {
                 Logger.getLogger(ConsultaDao.class.getName()).log(Level.SEVERE, null, ex);

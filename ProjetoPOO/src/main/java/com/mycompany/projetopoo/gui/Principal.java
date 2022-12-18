@@ -42,7 +42,9 @@ public class Principal extends javax.swing.JFrame {
         mnuInicioSobre = new javax.swing.JMenuItem();
         mnuInicioSair = new javax.swing.JMenuItem();
         mnuAtend = new javax.swing.JMenu();
-        mnuAtendCadastrar = new javax.swing.JMenuItem();
+        mnuAtendCadastrarPaciente = new javax.swing.JMenuItem();
+        mnuAtendCadastrarMedico = new javax.swing.JMenuItem();
+        mnuAtendCadastrarEnfermeiro = new javax.swing.JMenuItem();
         mnuAtendTriagem = new javax.swing.JMenuItem();
         mnuAtendAtendimentoMedico = new javax.swing.JMenuItem();
         mnuAtendAtendimento = new javax.swing.JMenuItem();
@@ -94,13 +96,29 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        mnuAtendCadastrar.setText("Cadastrar paciente");
-        mnuAtendCadastrar.addActionListener(new java.awt.event.ActionListener() {
+        mnuAtendCadastrarPaciente.setText("Cadastrar Paciente");
+        mnuAtendCadastrarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuAtendCadastrarActionPerformed(evt);
+                mnuAtendCadastrarPacienteActionPerformed(evt);
             }
         });
-        mnuAtend.add(mnuAtendCadastrar);
+        mnuAtend.add(mnuAtendCadastrarPaciente);
+
+        mnuAtendCadastrarMedico.setText("Cadastrar Médico");
+        mnuAtendCadastrarMedico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAtendCadastrarMedicoActionPerformed(evt);
+            }
+        });
+        mnuAtend.add(mnuAtendCadastrarMedico);
+
+        mnuAtendCadastrarEnfermeiro.setText("Cadastrar Enfermeiro");
+        mnuAtendCadastrarEnfermeiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAtendCadastrarEnfermeiroActionPerformed(evt);
+            }
+        });
+        mnuAtend.add(mnuAtendCadastrarEnfermeiro);
 
         mnuAtendTriagem.setText("Triagem paciente");
         mnuAtendTriagem.addActionListener(new java.awt.event.ActionListener() {
@@ -167,10 +185,10 @@ public class Principal extends javax.swing.JFrame {
         attachInternalFrame(AtendimentoMedico.getInstance());
     }//GEN-LAST:event_mnuAtendAtendimentoMedicoActionPerformed
 
-    private void mnuAtendCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAtendCadastrarActionPerformed
+    private void mnuAtendCadastrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAtendCadastrarPacienteActionPerformed
         // TODO add your handling code here:
         attachInternalFrame(CadastroPaciente.getInstance());
-    }//GEN-LAST:event_mnuAtendCadastrarActionPerformed
+    }//GEN-LAST:event_mnuAtendCadastrarPacienteActionPerformed
 
     private void mnuAtendTriagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAtendTriagemActionPerformed
         // TODO add your handling code here:
@@ -181,6 +199,16 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         attachInternalFrame(Atendimento.getInstance());
     }//GEN-LAST:event_mnuAtendAtendimentoActionPerformed
+
+    private void mnuAtendCadastrarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAtendCadastrarMedicoActionPerformed
+        // TODO add your handling code here:
+        attachInternalFrame(CadastroMedico.getInstance());
+    }//GEN-LAST:event_mnuAtendCadastrarMedicoActionPerformed
+
+    private void mnuAtendCadastrarEnfermeiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAtendCadastrarEnfermeiroActionPerformed
+        // TODO add your handling code here:
+        attachInternalFrame(CadastroEnfermeiro.getInstance());
+    }//GEN-LAST:event_mnuAtendCadastrarEnfermeiroActionPerformed
 
     private void attachInternalFrame(JInternalFrame window) {
         // Attach internal window to desktop pane
@@ -246,7 +274,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu mnuAtend;
     private javax.swing.JMenuItem mnuAtendAtendimento;
     private javax.swing.JMenuItem mnuAtendAtendimentoMedico;
-    private javax.swing.JMenuItem mnuAtendCadastrar;
+    private javax.swing.JMenuItem mnuAtendCadastrarEnfermeiro;
+    private javax.swing.JMenuItem mnuAtendCadastrarMedico;
+    private javax.swing.JMenuItem mnuAtendCadastrarPaciente;
     private javax.swing.JMenuItem mnuAtendTriagem;
     private javax.swing.JMenu mnuInicio;
     private javax.swing.JMenuItem mnuInicioSair;

@@ -4,7 +4,6 @@
  */
 package com.mycompany.projetopoo.pessoas;
 
-import com.mycompany.projetopoo.dados.Data;
 import com.mycompany.projetopoo.dados.Endereco;
 import com.mycompany.projetopoo.dados.Pessoa;
 
@@ -14,19 +13,17 @@ import com.mycompany.projetopoo.dados.Pessoa;
  */
 public class Medico extends Pessoa{
     private String crm;
-    private String especialidade;
 
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Medico() {
     }
 
-    public Medico(String crm, String especialidade) {
+    public Medico(String crm) {
         this.crm = crm;
-        this.especialidade = especialidade;
     }
     
-    public Medico(String nome, String cpf, Data dataNascimento, String telefone, String email, Endereco endereco, Long id) {
-        super(nome, cpf, dataNascimento, telefone, email, endereco, id);
+    public Medico(String crm, String nome, String cpf, String dataNascimento, String telefone, Endereco endereco, Long id) {
+        super(nome, cpf, dataNascimento, telefone, endereco, id);
     }
     //</editor-fold>  
     
@@ -38,21 +35,22 @@ public class Medico extends Pessoa{
     public void setCrm(String crm) {
         this.crm = crm;
     }
-
-    public String getEspecialidade() {
-        return especialidade;
-    }
-
-    public void setEspecialidade(String especialidade) {
-        this.especialidade = especialidade;
-    }
     //</editor-fold>
+    
+    @Override
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    @Override
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
     
     @Override
     public String toString() {
         return "Medico{" 
                 + "crm=" + crm 
-                + ", especialidade=" + especialidade 
                 + '}';
     }
 }
