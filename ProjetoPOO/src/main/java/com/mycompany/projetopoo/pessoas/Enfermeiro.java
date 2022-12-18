@@ -22,11 +22,10 @@ public class Enfermeiro extends Pessoa{
         this.coren = coren;
     }
 
-    public Enfermeiro(String coren, String nome, String cpf, String dataNascimento, String telefone, Endereco endereco, Long id) {
-        super(nome, cpf, dataNascimento, telefone, endereco, id);
+    public Enfermeiro(String coren, String nome, String cpf, String nascimento, String telefone, Endereco endereco, Long id) {
+        super(nome, cpf, nascimento, telefone, endereco, id);
+        this.coren = coren;
     }
-    
-    
     
     //</editor-fold>
     

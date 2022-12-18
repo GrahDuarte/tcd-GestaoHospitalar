@@ -22,14 +22,14 @@ public class EnfermeiroDao extends Dao<Enfermeiro> {
     @Override
     public String getSaveStatment() {
         return "insert into " + TABLE
-                + " (coren, nome, cpf, dataNascimento, telefone, email)"
+                + " (coren, nome, cpf, nascimento, telefone, endereco)"
                 + " values (?, ?, ?, ?, ?, ?)";
     }
 
     @Override
     public String getUpdateStatment() {
         return "update " + TABLE
-                + " set coren = ?, nome = ?, cpf = ?, dataNascimento = ?, telefone = ?, email = ?"
+                + " set coren = ?, nome = ?, cpf = ?, nascimento = ?, telefone = ?, endereco = ?"
                 + " where id = ?";
     }
 
@@ -39,8 +39,9 @@ public class EnfermeiroDao extends Dao<Enfermeiro> {
             pstmt.setString(1, e.getCoren());
             pstmt.setString(2, e.getNome());
             pstmt.setString(3, e.getCpf());
-            pstmt.setString(3, e.getDataNascimento());
+            pstmt.setString(4, e.getNascimento());
             pstmt.setString(5, e.getTelefone());
+            pstmt.setLong(6, e.getEndereco().getId());
 
             if (e.getId() != null && e.getId() > 0) {
                 pstmt.setLong(7, e.getId());
@@ -52,14 +53,14 @@ public class EnfermeiroDao extends Dao<Enfermeiro> {
 
     @Override
     public String getFindByIdStatment() {
-        return "select id, coren, nome, cpf, dataNascimento, telefone"
+        return "select coren, nome, cpf, nascimento, telefone, endereco"
                 + " from " + TABLE
                 + " where id = ?";
     }
 
     @Override
     public String getFindAllStatment() {
-        return "select id, coren, nome, cpf, dataNascimento, telefone"
+        return "select coren, nome, cpf, nascimento, telefone, endereco"
                 + " from " + TABLE;
     }
 
@@ -70,7 +71,7 @@ public class EnfermeiroDao extends Dao<Enfermeiro> {
      */
     
     private String getfindAllByPartialNameStatment() {
-        return " select id, coren, nome, cpf, dataNascimento, telefone"
+        return " select coren, nome, cpf, nascimento, telefone, endereco"
                 + " from " + TABLE
                 + " where nome like ?";
     }
@@ -122,24 +123,17 @@ public class EnfermeiroDao extends Dao<Enfermeiro> {
      */
     @Override
     public Enfermeiro extractObject(ResultSet resultSet) {
-        Enfermeiro objeto = new Enfermeiro();
         if (resultSet != null) {
             try {
-                objeto.setId(resultSet.getLong("id"));
-                objeto.setCoren(resultSet.getString("coren"));
-                objeto.setNome(resultSet.getString("nome"));
-                objeto.setCpf(resultSet.getString("cpf"));
-                objeto.setDataNascimento(resultSet.getString("dataNascimento"));
-                objeto.setTelefone(resultSet.getString("telefone"));
-//                return new Enfermeiro (
-//                        resultSet.getLong("id"),
-//                        resultSet.getString("coren"),
-//                        resultSet.getString("nome"),
-//                        resultSet.getString("cpf"),
-//                        resultSet.getInt("dataNascimento"), //converter LocalDate para String ??
-//                        resultSet.getString("telefone"),
-//                        resultSet.getString("email")
-//                );
+                return new Enfermeiro (
+                    resultSet.getString("coren"),
+                    resultSet.getString("nome"),
+                    resultSet.getString("cpf"),
+                    resultSet.getString("nascimento"),
+                    resultSet.getString("telefone"),
+                    new EnderecoDao().findById(resultSet.getLong("endereco")),
+                    null
+                );
             } catch (SQLException ex) {
                 Logger.getLogger(EnfermeiroDao.class.getName()).log(Level.SEVERE, null, ex);
             }

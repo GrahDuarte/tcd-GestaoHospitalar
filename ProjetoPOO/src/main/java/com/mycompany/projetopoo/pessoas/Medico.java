@@ -22,9 +22,11 @@ public class Medico extends Pessoa{
         this.crm = crm;
     }
     
-    public Medico(String crm, String nome, String cpf, String dataNascimento, String telefone, Endereco endereco, Long id) {
-        super(nome, cpf, dataNascimento, telefone, endereco, id);
+    public Medico(String crm, String nome, String cpf, String nascimento, String telefone, Endereco endereco, Long id) {
+        super(nome, cpf, nascimento, telefone, endereco, id);
+        this.crm = crm;
     }
+    
     //</editor-fold>  
     
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
@@ -36,16 +38,6 @@ public class Medico extends Pessoa{
         this.crm = crm;
     }
     //</editor-fold>
-    
-    @Override
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    @Override
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
     
     @Override
     public String toString() {

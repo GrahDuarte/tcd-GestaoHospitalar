@@ -22,29 +22,27 @@ public class EnderecoDao extends Dao<Endereco>{
     @Override
     public String getSaveStatment() {
         return "insert into " + TABLE
-                + " (id, bairro, logradouro, numero, complemento)"
-                + " values (?, ?, ?, ?, ?)";
+                + " (bairro, rua, numero)"
+                + " values (?, ?, ?)";
     }
 
     @Override
     public String getUpdateStatment() {
         return "update " + TABLE
-                + " set id = ?, bairro = ?, logradouro = ?, numero = ?, complemento = ?"
+                + " set bairro = ?, rua = ?, numero = ?"
                 + " where id = ?";
     }
 
     @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Endereco e) {
         try {
-            pstmt.setLong(1, e.getIdPessoa());
-            pstmt.setString(2, e.getBairro());
-            pstmt.setString(3, e.getLogradouro());
-            pstmt.setInt(4, e.getNumero());
-            pstmt.setString(5, e.getComplemento());
+            pstmt.setString(1, e.getBairro());
+            pstmt.setString(2, e.getRua());
+            pstmt.setString(3, e.getNumero());
 
-//            if (e.getId() != null && e.getId() > 0) {
-//                pstmt.setLong(6, e.getId());
-//            }
+            if (e.getId() != null && e.getId() > 0) {
+                pstmt.setLong(4, e.getId());
+            }
         } catch (SQLException ex) {
             Logger.getLogger(EnderecoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -52,19 +50,19 @@ public class EnderecoDao extends Dao<Endereco>{
 
     @Override
     public String getFindByIdStatment() {
-        return "select id, bairro, logradouro, numero, complemento"
+        return "select bairro, rua, numero"
                 + " from " + TABLE
                 + " where id = ?";
     }
 
     @Override
     public String getFindAllStatment() {
-        return "select id, bairro, logradouro, numero, complemento"
+        return "select bairro, rua, numero"
                 + " from " + TABLE;
     }
 
     private String getfindAllByPartialNameStatment() {
-        return " select id, bairro, logradouro, numero, complemento"
+        return " select bairro, rua, numero"
                 + " from " + TABLE
                 + " where nome like ?";
     }
@@ -114,9 +112,8 @@ public class EnderecoDao extends Dao<Endereco>{
             try {
                 return new Endereco (null,
                         resultSet.getString("bairro"),
-                        resultSet.getString("logradouro"),
-                        resultSet.getInt("numero"),
-                        resultSet.getString("complemento")
+                        resultSet.getString("rua"),
+                        resultSet.getString("numero")
                 );
             } catch (SQLException ex) {
                 Logger.getLogger(EnderecoDao.class.getName()).log(Level.SEVERE, null, ex);

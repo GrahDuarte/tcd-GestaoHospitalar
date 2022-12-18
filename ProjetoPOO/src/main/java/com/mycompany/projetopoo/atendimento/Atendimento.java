@@ -6,15 +6,13 @@ package com.mycompany.projetopoo.atendimento;
 
 import com.mycompany.projetopoo.pessoas.Entity;
 import com.mycompany.projetopoo.pessoas.Paciente;
-import java.sql.Date;
-import java.time.LocalDateTime;
 
 /**
  *
  * @author suKarolainy
  */
 public class Atendimento extends Entity{
-    private Date horarioAtendimento;
+    private String data;
     private Triagem triagem;
     private Consulta consulta;
     private Paciente paciente;
@@ -23,18 +21,10 @@ public class Atendimento extends Entity{
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Atendimento() {
     }
-
-    public Atendimento(Date horarioAtendimento, Triagem triagem, Consulta consulta, Paciente paciente) {
-        this.horarioAtendimento = horarioAtendimento;
-        this.triagem = triagem;
-        this.consulta = consulta;
-        this.paciente = paciente;
-    }
-
     
-    public Atendimento(Date horarioAtendimento, Triagem triagem, Consulta consulta, Paciente paciente, Long id){
+    public Atendimento(String data, Triagem triagem, Consulta consulta, Paciente paciente, Long id){
         super(id);
-        this.horarioAtendimento = horarioAtendimento;
+        this.data = data;
         this.triagem = triagem;
         this.consulta = consulta;
         this.paciente = paciente;
@@ -43,13 +33,12 @@ public class Atendimento extends Entity{
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
-    public Date getHorarioAtendimento() {
-        return horarioAtendimento;
+    public String getData() {
+        return data;
     }
 
-    public void setHorarioAtendimento(Date horarioAtendimento) {
-        
-        this.horarioAtendimento = horarioAtendimento;
+    public void setData(String data) {
+        this.data = data;
     }
 
     public Triagem getTriagem() {
@@ -80,7 +69,7 @@ public class Atendimento extends Entity{
     @Override
     public String toString() {
         return "Atendimento{" 
-                + "horarioAtendimento=" + horarioAtendimento 
+                + "data=" + data
                 + ", triagem=" + triagem 
                 + ", consulta=" + consulta 
                 + ", paciente=" + paciente 

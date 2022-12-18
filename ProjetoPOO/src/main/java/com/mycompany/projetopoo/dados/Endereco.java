@@ -4,35 +4,26 @@
  */
 package com.mycompany.projetopoo.dados;
 
+import com.mycompany.projetopoo.pessoas.Entity;
+
 /**
  *
  * @author suKarolainy
  */
-public class Endereco{
-    private Long idPessoa;
+public class Endereco extends Entity{
     private String bairro;
-    private String logradouro;
-    private Integer numero;
-    private String complemento;
+    private String rua;
+    private String numero;
 
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Endereco() {
     }
 
-    public Endereco(Long idPessoa, String bairro, String logradouro, Integer numero, String complemento) {
-        this.idPessoa = idPessoa;
+    public Endereco(Long id, String bairro, String rua, String numero) {
+        super(id);
         this.bairro = bairro;
-        this.logradouro = logradouro;
+        this.rua = rua;
         this.numero = numero;
-        this.complemento = complemento;
-    }
-
-    public Long getIdPessoa() {
-        return idPessoa;
-    }
-
-    public void setIdPessoa(Long idPessoa) {
-        this.idPessoa = idPessoa;
     }
     
     public String getBairro() {
@@ -43,39 +34,28 @@ public class Endereco{
         this.bairro = bairro;
     }
 
-    public String getLogradouro() {
-        return logradouro;
+    public String getRua() {
+        return rua;
     }
 
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
+    public void setRua(String rua) {
+        this.rua = rua;
     }
 
-    public Integer getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public void setComplemento(String complemento) {
-        this.complemento = complemento;
-    }
-
-    
 
     @Override
     public String toString(){
         return "Endereco{"
                 + ",bairro=" + bairro
-                + ",logradouro=" + logradouro
+                + ",rua=" + rua
                 + ",numero" + numero
-                + ",complemento=" + complemento
                 + '}';
     }
 }

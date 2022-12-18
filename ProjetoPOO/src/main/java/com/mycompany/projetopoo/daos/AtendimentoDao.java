@@ -7,6 +7,7 @@ package com.mycompany.projetopoo.daos;
 import com.mycompany.projetopoo.atendimento.Atendimento;
 import com.mycompany.projetopoo.atendimento.Consulta;
 import com.mycompany.projetopoo.atendimento.Triagem;
+import com.mycompany.projetopoo.pessoas.Paciente;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,23 +26,23 @@ public class AtendimentoDao extends Dao<Atendimento> {
     @Override
     public String getSaveStatment() {
         return "insert into " + TABLE
-                + " (horarioAtendimento, triagem, consulta, paciente)"
+                + " (data, triagem, consulta, paciente)"
                 + " values (?, ?, ?, ?)";
     }
 
     @Override
     public String getUpdateStatment() {
         return "update " + TABLE
-                + " set horarioAtendimento =?, triagem = ?, consulta = ?, paciente = ?"
+                + " set data =?, triagem = ?, consulta = ?, paciente = ?"
                 + " where id = ?";
     }
 
     @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Atendimento e) {
         try {
-            pstmt.setDate(1, e.getHorarioAtendimento());
-            pstmt.setLong(2, e.getTriagem().getIdAtendimento());
-            pstmt.setLong(3, e.getConsulta().getIdAtendimento());
+            pstmt.setString(1, e.getData());
+            pstmt.setLong(2, e.getTriagem().getId());
+            pstmt.setLong(3, e.getConsulta().getId());
             pstmt.setLong(4, e.getPaciente().getId());
 
             if (e.getId() != null && e.getId() > 0) {
@@ -54,14 +55,14 @@ public class AtendimentoDao extends Dao<Atendimento> {
 
     @Override
     public String getFindByIdStatment() {
-        return "select horarioAtendimento =?, triagem = ?, consulta = ?, paciente = ?"
+        return "select data =?, triagem = ?, consulta = ?, paciente = ?"
                 + " from " + TABLE
                 + " where id = ?";
     }
 
     @Override
     public String getFindAllStatment() {
-        return "select horarioAtendimento =?, triagem = ?, consulta = ?, paciente = ?"
+        return "select data =?, triagem = ?, consulta = ?, paciente = ?"
                 + " from " + TABLE;
     }
 
@@ -72,7 +73,7 @@ public class AtendimentoDao extends Dao<Atendimento> {
      */
     
     private String getfindAllByPartialNameStatment() {
-        return " select horarioAtendimento =?, triagem = ?, consulta = ?, paciente = ?"
+        return " select data =?, triagem = ?, consulta = ?, paciente = ?"
                 + " from " + TABLE
                 + " where nome like ?";
     }
@@ -124,13 +125,15 @@ public class AtendimentoDao extends Dao<Atendimento> {
      */
     @Override
     public Atendimento extractObject(ResultSet resultSet) {
-        Atendimento objeto = new Atendimento();
         if (resultSet != null) {
             try {
-                objeto.setId(resultSet.getLong("id"));
-                objeto.setHorarioAtendimento(resultSet.getDate("horarioAtendimento"));
-                objeto.setConsulta((new ConsultaDao().findById(resultSet.getLong("consulta"))));
-                objeto.setPaciente((new PacienteDao().findById(resultSet.getLong("paciente"))));
+                return new Atendimento (
+                    resultSet.getString("data"),
+                    new TriagemDao().findById(resultSet.getLong("triagem")),
+                    new ConsultaDao().findById(resultSet.getLong("consulta")),
+                    new PacienteDao().findById(resultSet.getLong("paciente")),
+                    null
+                );
             } catch (SQLException ex) {
                 Logger.getLogger(AtendimentoDao.class.getName()).log(Level.SEVERE, null, ex);
             }

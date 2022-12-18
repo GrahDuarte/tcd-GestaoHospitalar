@@ -23,14 +23,14 @@ public class PacienteDao
     @Override
     public String getSaveStatment() {
         return "insert into " + TABLE
-                + " (nome, cpf, dataNascimento, telefone)"
-                + " values (?, ?, ?, ?)";
+                + " (nome, cpf, nascimento, telefone, endereco)"
+                + " values (?, ?, ?, ?, ?)";
     }
 
     @Override
     public String getUpdateStatment() {
         return "update " + TABLE
-                + " set nome = ?, cpf = ?, dataNascimento = ?, telefone = ?"
+                + " set nome = ?, cpf = ?, nascimento = ?, telefone = ?, endereco = ?"
                 + " where id = ?";
     }
 
@@ -39,11 +39,12 @@ public class PacienteDao
         try {
             pstmt.setString(1, e.getNome());
             pstmt.setString(2, e.getCpf());
-            pstmt.setString(3, e.getDataNascimento());
+            pstmt.setString(3, e.getNascimento());
             pstmt.setString(4, e.getTelefone());
+            pstmt.setLong(5, e.getEndereco().getId());
 
             if (e.getId() != null && e.getId() > 0) {
-                pstmt.setLong(5, e.getId());
+                pstmt.setLong(6, e.getId());
             }
         } catch (SQLException ex) {
             Logger.getLogger(PacienteDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -52,14 +53,14 @@ public class PacienteDao
 
     @Override
     public String getFindByIdStatment() {
-        return "select id, nome, cpf, dataNascimento, telefone"
+        return "select nome, cpf, nascimento, telefone, endereco"
                 + " from " + TABLE
                 + " where id = ?";
     }
 
     @Override
     public String getFindAllStatment() {
-        return "select id, nome, cpf, dataNascimento, telefone"
+        return "select nome, cpf, nascimento, telefone, endereco"
                 + " from " + TABLE;
     }
 
@@ -70,7 +71,7 @@ public class PacienteDao
      */
     
     private String getfindAllByPartialNameStatment() {
-        return " select id, nome, cpf, dataNascimento, telefone"
+        return " select nome, cpf, nascimento, telefone, endereco"
                 + " from " + TABLE
                 + " where nome like ?";
     }
@@ -122,22 +123,16 @@ public class PacienteDao
      */
     @Override
     public Paciente extractObject(ResultSet resultSet) {
-        Paciente objeto = new Paciente();
         if (resultSet != null) {
             try {
-                objeto.setId(resultSet.getLong("id"));
-                objeto.setNome(resultSet.getString("nome"));
-                objeto.setCpf(resultSet.getString("cpf"));
-                objeto.setDataNascimento(resultSet.getString("dataNascimento"));
-                objeto.setTelefone(resultSet.getString("telefone"));
-//                return new Paciente (
-//                        resultSet.getLong("id"),
-//                        resultSet.getString("nome"),
-//                        resultSet.getString("cpf"),
-//                        resultSet.getLong("dataNascimento"),
-//                        resultSet.getString("telefone"),
-//                        resultSet.getString("email")
-//                );
+                return new Paciente (
+                    resultSet.getString("nome"),
+                    resultSet.getString("cpf"),
+                    resultSet.getString("nascimento"),
+                    resultSet.getString("telefone"),
+                    new EnderecoDao().findById(resultSet.getLong("endereco")),
+                    null
+                );
             } catch (SQLException ex) {
                 Logger.getLogger(PacienteDao.class.getName()).log(Level.SEVERE, null, ex);
             }

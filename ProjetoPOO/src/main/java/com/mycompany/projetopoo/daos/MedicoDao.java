@@ -22,14 +22,14 @@ public class MedicoDao extends Dao<Medico> {
     @Override
     public String getSaveStatment() {
         return "insert into " + TABLE
-                + " (crm, especialidade, nome, cpf, dataNascimento, telefone)"
-                + " values (?, ?, ?, ?, ?, ?, ?)";
+                + " (crm, nome, cpf, nascimento, telefone, endereco)"
+                + " values (?, ?, ?, ?, ?, ?)";
     }
 
     @Override
     public String getUpdateStatment() {
         return "update " + TABLE
-                + " set crm = ?, especialidade = ?, nome = ?, cpf = ?, dataNascimento = ?, telefone = ?"
+                + " set crm = ?, nome = ?, cpf = ?, nascimento = ?, telefone = ?, endereco = ?"
                 + " where id = ?";
     }
 
@@ -37,13 +37,14 @@ public class MedicoDao extends Dao<Medico> {
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Medico e) {
         try {
             pstmt.setString(1, e.getCrm());
-            pstmt.setString(3, e.getNome());
-            pstmt.setString(4, e.getCpf());
-            pstmt.setString(3, e.getDataNascimento());
-            pstmt.setString(6, e.getTelefone());
+            pstmt.setString(2, e.getNome());
+            pstmt.setString(3, e.getCpf());
+            pstmt.setString(4, e.getNascimento());
+            pstmt.setString(5, e.getTelefone());
+            pstmt.setLong(6, e.getEndereco().getId());
 
             if (e.getId() != null && e.getId() > 0) {
-                pstmt.setLong(8, e.getId());
+                pstmt.setLong(7, e.getId());
             }
         } catch (SQLException ex) {
             Logger.getLogger(PacienteDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -52,14 +53,14 @@ public class MedicoDao extends Dao<Medico> {
 
     @Override
     public String getFindByIdStatment() {
-        return "select id, crm, especialidade, nome, cpf, dataNascimento, telefone"
+        return "select crm, nome, cpf, nascimento, telefone, endereco"
                 + " from " + TABLE
                 + " where id = ?";
     }
 
     @Override
     public String getFindAllStatment() {
-        return "select id, crm, especialidade, nome, cpf, dataNascimento, telefone"
+        return "select crm, nome, cpf, nascimento, telefone, endereco"
                 + " from " + TABLE;
     }
 
@@ -70,7 +71,7 @@ public class MedicoDao extends Dao<Medico> {
      */
     
     private String getfindAllByPartialNameStatment() {
-        return " select id, crm, especialidade, nome, cpf, dataNascimento, telefone"
+        return " select crm, nome, cpf, nascimento, telefone, endereco"
                 + " from " + TABLE
                 + " where nome like ?";
     }
@@ -122,25 +123,23 @@ public class MedicoDao extends Dao<Medico> {
      */
     @Override
     public Medico extractObject(ResultSet resultSet) {
-        Medico objeto = new Medico();
         if (resultSet != null) {
             try {
-                objeto.setId(resultSet.getLong("id"));
-                objeto.setCrm(resultSet.getString("crm"));
-                objeto.setNome(resultSet.getString("nome"));
-                objeto.setCpf(resultSet.getString("cpf"));
-                objeto.setDataNascimento(resultSet.getString("dataNascimento"));
-                objeto.setTelefone(resultSet.getString("telefone"));
+                return new Medico (
+                    resultSet.getString("crm"),
+                    resultSet.getString("nome"),
+                    resultSet.getString("cpf"),
+                    resultSet.getString("nascimento"),
+                    resultSet.getString("telefone"),
+                    new EnderecoDao().findById(resultSet.getLong("endereco")),
+                    null
+                );
             } catch (SQLException ex) {
                 Logger.getLogger(MedicoDao.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
         return null;
-    }
-
-    Medico localizarPorId(long aLong) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

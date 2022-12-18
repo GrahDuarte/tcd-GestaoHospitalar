@@ -16,18 +16,8 @@ public class Paciente extends Pessoa{
     public Paciente() {
     }
     
-    public Paciente(String nome, String cpf, String dataNascimento, String telefone, Endereco endereco, Long id) {
-        super(nome, cpf, dataNascimento, telefone, endereco, id);
-    }
-
-    @Override
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    @Override
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
+    public Paciente(String nome, String cpf, String nascimento, String telefone, Endereco endereco, Long id) {
+        super(nome, cpf, nascimento, telefone, endereco, id);
     }
     
 }

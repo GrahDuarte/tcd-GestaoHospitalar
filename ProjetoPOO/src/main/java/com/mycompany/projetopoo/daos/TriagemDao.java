@@ -22,32 +22,26 @@ public class TriagemDao extends Dao<Triagem> {
     @Override
     public String getSaveStatment() {
         return "insert into " + TABLE
-                + " (enfermeiroTriador, idAtendimento, tipoSanguineo, alergias, doencasCronicas, medicamentosControlados, motivoAtendimento, prioridadeAtendimento)"
-                + " values (?, ?, ?, ?, ?, ?, ?, ?)";
+                + " (enfermeiro, prioridade)"
+                + " values (?, ?)";
     }
 
     @Override
     public String getUpdateStatment() {
         return "update " + TABLE
-                + " set enfermeiroTriador = ?, idAtendimento = ?, tipoSanguineo = ?, alergias = ?, doencasCronicas = ?, medicamentosControlados = ?, motivoAtendimento = ?, prioridadeAtendimento = ?"
+                + " set enfermeiro = ?, prioridade = ?"
                 + " where id = ?";
     }
 
     @Override
     public void composeSaveOrUpdateStatement(PreparedStatement pstmt, Triagem e) {
         try {
-            pstmt.setLong(1, e.getEnfermeiroTriador().getId());
-            pstmt.setLong(2, e.getIdAtendimento());
-            pstmt.setString(3, e.getTipoSanguineo());
-            pstmt.setString(4, e.getAlergias());
-            pstmt.setString(5, e.getDoencasCronicas());
-            pstmt.setString(6, e.getMedicamentosControlados());
-            pstmt.setString(7, e.getMotivoAtendimento());
-            pstmt.setString(8, e.getPrioridadeAtendimento());
+            pstmt.setLong(1, e.getEnfermeiro().getId());
+            pstmt.setString(2, e.getPrioridade());
 
-//            if (e.getId() != null && e.getId() > 0) {
-//                pstmt.setLong(9, e.getId());
-//            }
+            if (e.getId() != null && e.getId() > 0) {
+                pstmt.setLong(3, e.getId());
+            }
         } catch (SQLException ex) {
             Logger.getLogger(TriagemDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -55,14 +49,14 @@ public class TriagemDao extends Dao<Triagem> {
 
     @Override
     public String getFindByIdStatment() {
-        return "select enfermeiroTriador, idAtendimento, tipoSanguineo, alergias, doencasCronicas, medicamentosControlados, motivoAtendimento, prioridadeAtendimento"
+        return "select enfermeiro, prioridade"
                 + " from " + TABLE
                 + " where id = ?";
     }
 
     @Override
     public String getFindAllStatment() {
-        return "select enfermeiroTriador, idAtendimento, tipoSanguineo, alergias, doencasCronicas, medicamentosControlados, motivoAtendimento, prioridadeAtendimento"
+        return "select enfermeiro, prioridade"
                 + " from " + TABLE;
     }
 
@@ -73,7 +67,7 @@ public class TriagemDao extends Dao<Triagem> {
      */
     
     private String getfindAllByPartialNameStatment() {
-        return " select enfermeiroTriador, idAtendimento, tipoSanguineo, alergias, doencasCronicas, medicamentosControlados, motivoAtendimento, prioridadeAtendimento"
+        return " select enfermeiro, prioridade"
                 + " from " + TABLE
                 + " where nome like ?";
     }
@@ -125,17 +119,13 @@ public class TriagemDao extends Dao<Triagem> {
      */
     @Override
     public Triagem extractObject(ResultSet resultSet) {
-        Triagem objeto = new Triagem();
         if (resultSet != null) {
             try {
-                objeto.setEnfermeiroTriador(new EnfermeiroDao().findById(resultSet.getLong("enfermeiroTriador")));
-                objeto.setIdAtendimento(resultSet.getInt("idAtendimento"));
-                objeto.setTipoSanguineo(resultSet.getString("tipoSanguineo"));
-                objeto.setAlergias(resultSet.getString("alergias"));
-                objeto.setDoencasCronicas(resultSet.getString("doencasCronicas"));
-                objeto.setMedicamentosControlados(resultSet.getString("medicamentosControlados"));
-                objeto.setMotivoAtendimento(resultSet.getString("motivoAtendimento"));
-                objeto.setPrioridadeAtendimento(resultSet.getString("prioridadeAtendimento"));
+                return new Triagem (
+                    new EnfermeiroDao().findById(resultSet.getLong("enfermeiro")),
+                    resultSet.getString("prioridade"),
+                    null
+                );
             } catch (SQLException ex) {
                 Logger.getLogger(TriagemDao.class.getName()).log(Level.SEVERE, null, ex);
             }

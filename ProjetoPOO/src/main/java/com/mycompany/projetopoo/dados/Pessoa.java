@@ -13,19 +13,19 @@ import com.mycompany.projetopoo.pessoas.Entity;
 public class Pessoa extends Entity{
     private String nome;
     private String cpf;
-    private String dataNascimento;
+    private String nascimento;
     private String telefone;
-    public Endereco endereco;
+    private Endereco endereco;
 
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Pessoa() {
     }
 
-    public Pessoa(String nome, String cpf, String dataNascimento, String telefone, Endereco endereco, Long id) {
+    public Pessoa(String nome, String cpf, String nascimento, String telefone, Endereco endereco, Long id) {
         super(id);
         this.nome = nome;
         this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
+        this.nascimento = nascimento;
         this.telefone = telefone;
         this.endereco = endereco;
     }
@@ -46,12 +46,12 @@ public class Pessoa extends Entity{
         this.cpf = cpf;
     }
 
-    public String getDataNascimento() {
-        return dataNascimento;
+    public String getNascimento() {
+        return nascimento;
     }
 
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
+    public void setNascimento(String nascimento) {
+        this.nascimento = nascimento;
     }
 
     public String getTelefone() {
@@ -76,7 +76,7 @@ public class Pessoa extends Entity{
         return "Pessoa{"
                 + ",nome=" + nome
                 + ",cpf=" + cpf
-                + ",dataNascimento=" + dataNascimento
+                + ",nascimento=" + nascimento
                 + ",telefone=" + telefone
                 + ",endereco=" + endereco
                 + '}';

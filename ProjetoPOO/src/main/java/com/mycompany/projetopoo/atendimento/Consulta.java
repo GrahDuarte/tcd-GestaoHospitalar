@@ -4,43 +4,36 @@
  */
 package com.mycompany.projetopoo.atendimento;
 
+import com.mycompany.projetopoo.pessoas.Entity;
 import com.mycompany.projetopoo.pessoas.Medico;
 
 /**
  *
  * @author suKarolainy
  */
-public class Consulta{
-    private Long idAtendimento;
-    private Medico medicoResponsavel;
+public class Consulta extends Entity{
+    private Medico medico;
     private String relatorio;
 
     //<editor-fold defaultstate="collapsed" desc="Constructors">
     public Consulta() {
     }
 
-    public Consulta(Long idAtendimento, Medico medicoResponsavel, String relatorio) {
-        this.idAtendimento = idAtendimento;
-        this.medicoResponsavel = medicoResponsavel;
+    public Consulta(Medico medico, String relatorio, Long id) {
+        super(id);
+        this.medico = medico;
         this.relatorio = relatorio;
     }
     //</editor-fold>
 
     //<editor-fold defaultstate="collapsed" desc="Getters/Setters">
-    public Long getIdAtendimento() {
-        return idAtendimento;
+    
+    public Medico getMedico() {
+        return medico;
     }
 
-    public void setIdAtendimento(Long idAtendimento) {
-        this.idAtendimento = idAtendimento;
-    }
-
-    public Medico getMedicoResponsavel() {
-        return medicoResponsavel;
-    }
-
-    public void setMedicoResponsavel(Medico medicoResponsavel) {
-        this.medicoResponsavel = medicoResponsavel;
+    public void setMedico(Medico medico) {
+        this.medico = medico;
     }
 
     public String getRelatorio() {
@@ -54,9 +47,8 @@ public class Consulta{
 
     @Override
     public String toString() {
-        return "Consulta{" 
-                + "idAtendimento=" + idAtendimento 
-                + ", medicoResponsavel=" + medicoResponsavel 
+        return "Consulta{"
+                + ", medico=" + medico 
                 + ", relatorio=" + relatorio 
                 + '}';
     }
