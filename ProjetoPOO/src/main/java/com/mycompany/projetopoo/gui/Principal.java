@@ -47,6 +47,7 @@ public class Principal extends javax.swing.JFrame {
         mnuAtendCadastrarEnfermeiro = new javax.swing.JMenuItem();
         mnuAtendTriagem = new javax.swing.JMenuItem();
         mnuAtendAtendimentoMedico = new javax.swing.JMenuItem();
+        mnuConsulta = new javax.swing.JMenuItem();
         mnuAtendAtendimento = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,11 +56,11 @@ public class Principal extends javax.swing.JFrame {
         dskPrincipal.setLayout(dskPrincipalLayout);
         dskPrincipalLayout.setHorizontalGroup(
             dskPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 398, Short.MAX_VALUE)
+            .addGap(0, 744, Short.MAX_VALUE)
         );
         dskPrincipalLayout.setVerticalGroup(
             dskPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 275, Short.MAX_VALUE)
+            .addGap(0, 571, Short.MAX_VALUE)
         );
 
         jScrollPane1.setViewportView(dskPrincipal);
@@ -136,6 +137,14 @@ public class Principal extends javax.swing.JFrame {
         });
         mnuAtend.add(mnuAtendAtendimentoMedico);
 
+        mnuConsulta.setText("Consulta");
+        mnuConsulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuConsultaActionPerformed(evt);
+            }
+        });
+        mnuAtend.add(mnuConsulta);
+
         mnuAtendAtendimento.setText("Consultar atendimento");
         mnuAtendAtendimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,11 +161,15 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -209,6 +222,11 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
         attachInternalFrame(CadastroEnfermeiro.getInstance());
     }//GEN-LAST:event_mnuAtendCadastrarEnfermeiroActionPerformed
+
+    private void mnuConsultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuConsultaActionPerformed
+        // TODO add your handling code here:
+        attachInternalFrame(ConsultaPaciente.getInstance());
+    }//GEN-LAST:event_mnuConsultaActionPerformed
 
     private void attachInternalFrame(JInternalFrame window) {
         // Attach internal window to desktop pane
@@ -278,6 +296,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuAtendCadastrarMedico;
     private javax.swing.JMenuItem mnuAtendCadastrarPaciente;
     private javax.swing.JMenuItem mnuAtendTriagem;
+    private javax.swing.JMenuItem mnuConsulta;
     private javax.swing.JMenu mnuInicio;
     private javax.swing.JMenuItem mnuInicioSair;
     private javax.swing.JMenuItem mnuInicioSobre;

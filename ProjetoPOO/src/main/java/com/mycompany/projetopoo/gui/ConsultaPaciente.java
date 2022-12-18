@@ -4,11 +4,13 @@
  */
 package com.mycompany.projetopoo.gui;
 
-import com.mycompany.projetopoo.atendimento.Triagem;
+import com.mycompany.projetopoo.atendimento.Consulta;
+import com.mycompany.projetopoo.daos.ConsultaDao;
 import com.mycompany.projetopoo.daos.EnfermeiroDao;
+import com.mycompany.projetopoo.daos.MedicoDao;
 import com.mycompany.projetopoo.daos.PacienteDao;
-import com.mycompany.projetopoo.daos.TriagemDao;
 import com.mycompany.projetopoo.pessoas.Enfermeiro;
+import com.mycompany.projetopoo.pessoas.Medico;
 import com.mycompany.projetopoo.pessoas.Paciente;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,20 +21,20 @@ import javax.swing.JOptionPane;
  *
  * @author suKarolainy
  */
-public class TriagemPaciente extends javax.swing.JInternalFrame {
+public class ConsultaPaciente extends javax.swing.JInternalFrame {
 
-    private static TriagemPaciente instance;
+    private static ConsultaPaciente instance;
 
     /**
      * Creates new form About
      */
-    private TriagemPaciente() {
+    private ConsultaPaciente() {
         initComponents();
     }
     
-    public static TriagemPaciente getInstance() {
+    public static ConsultaPaciente getInstance() {
         if(instance == null) {
-            instance = new TriagemPaciente();
+            instance = new ConsultaPaciente();
         }
         return instance;
     }
@@ -52,10 +54,10 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
         enfLbl = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        prioridadeTxt = new javax.swing.JTextField();
+        relatorioTxt = new javax.swing.JTextField();
         idAtendimentoTxt = new javax.swing.JTextField();
-        pacienteLbl = new javax.swing.JLabel();
-        enfTxt = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        medicoTxt = new javax.swing.JTextField();
         pacienteTxt = new javax.swing.JTextField();
 
         setClosable(true);
@@ -64,13 +66,13 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
 
         tituloTxt.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         tituloTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tituloTxt.setText("Triagem do paciente");
+        tituloTxt.setText("Consulta do paciente");
 
         idiLbl.setText("ID do atendimento:");
 
-        enfLbl.setText("Enfermeiro triador:");
+        enfLbl.setText("Médico Responsável:");
 
-        jLabel6.setText("Prioridade atendimento:");
+        jLabel6.setText("Relatório");
 
         jButton1.setText("Salvar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -85,7 +87,7 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
             }
         });
 
-        pacienteLbl.setText("Nome do paciente:");
+        jLabel7.setText("Nome do paciente:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -96,23 +98,20 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(idiLbl)
+                            .addComponent(enfLbl)
+                            .addComponent(jLabel6))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(idiLbl)
-                                    .addComponent(enfLbl))
-                                .addGap(32, 32, 32)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(idAtendimentoTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-                                    .addComponent(enfTxt))
+                                    .addComponent(medicoTxt))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pacienteLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pacienteTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(prioridadeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(10, 10, 10))
+                                .addComponent(pacienteTxt))
+                            .addComponent(relatorioTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(tituloTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(219, 219, 219)
@@ -128,16 +127,16 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(idiLbl)
                     .addComponent(idAtendimentoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pacienteLbl)
+                    .addComponent(jLabel7)
                     .addComponent(pacienteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(enfLbl)
-                    .addComponent(enfTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(medicoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
-                    .addComponent(prioridadeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(relatorioTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(16, 16, 16))
@@ -160,21 +159,21 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-            new TriagemDao().saveOrUpdate(
-                    new Triagem(
+            new ConsultaDao().saveOrUpdate(
+                    new Consulta(
                             null,
-                            prioridadeTxt.getText(),
+                            relatorioTxt.getText(),
                             null));
-            new EnfermeiroDao().saveOrUpdate(
-                    new Enfermeiro(
+            new MedicoDao().saveOrUpdate(
+                    new Medico(
                             null,
-                            enfTxt.getText(),
+                            medicoTxt.getText(),
                             null,
                             null,
                             null,
                             null,
                             null
-                    ));   
+                    ));  
             new PacienteDao().saveOrUpdate(
                     new Paciente(
                             pacienteTxt.getText(),
@@ -185,11 +184,11 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
                             null
                     ));
         } catch (Exception ex) {
-            Logger.getLogger(TriagemPaciente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConsultaPaciente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Record not saved.\nCheck the data or the network connection and try again.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
-        prioridadeTxt.setText(null);
+        relatorioTxt.setText(null);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void idAtendimentoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idAtendimentoTxtActionPerformed
@@ -199,15 +198,15 @@ public class TriagemPaciente extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enfLbl;
-    private javax.swing.JTextField enfTxt;
     private javax.swing.JTextField idAtendimentoTxt;
     private javax.swing.JLabel idiLbl;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel pacienteLbl;
+    private javax.swing.JTextField medicoTxt;
     private javax.swing.JTextField pacienteTxt;
-    private javax.swing.JTextField prioridadeTxt;
+    private javax.swing.JTextField relatorioTxt;
     private javax.swing.JLabel tituloTxt;
     // End of variables declaration//GEN-END:variables
 }
